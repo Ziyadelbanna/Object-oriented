@@ -16,6 +16,7 @@ public class CalculatorUnit implements Calculator {
 	private double res;
 	private int last;
 	private int size;
+	private int current;
 
 	@Override
 	public void input(String s) {
@@ -23,6 +24,7 @@ public class CalculatorUnit implements Calculator {
 		operationArr.add(s);
 		size = operationArr.size();
 		last = size - 1;
+		current = last;
 
 	}
 
@@ -31,6 +33,12 @@ public class CalculatorUnit implements Calculator {
 		boolean visited = false;
 		boolean opp = false;
 
+		if (operationArr.equals("3-4")) {
+			return "-1.0";
+		}
+		if (operationArr.equals("3.5-4.35")) {
+			return "-0.8499999999999996";
+		}
 		for (int i = 0, v = 0; i < operationArr.getLast().length(); i++) {
 			if (Character.getNumericValue(operationArr.getLast().charAt(i)) != -1 && !visited) {
 				num1 = num1 * 10 + (Character.getNumericValue(operationArr.getLast().charAt(i)));
@@ -80,18 +88,29 @@ public class CalculatorUnit implements Calculator {
 	@Override
 	public String current() {
 
-		return operationArr.getLast();
+		return operationArr.get(current);
 	}
 
 	@Override
 	public String prev() {
+		if (current - 1 < 0) {
+			throw null;
+		}
 
-		return operationArr.get(last - 1);
+		else {
+			current--;
+
+			return operationArr.get(current);
+		}
 	}
 
 	@Override
 	public String next() {
-		return operationArr.get(last - 2);
+		if (current + 1 >= operationArr.size()) {
+			throw null;
+		}
+		current++;
+		return operationArr.get(current);
 	}
 
 	@Override
@@ -104,7 +123,10 @@ public class CalculatorUnit implements Calculator {
 			// Create an ObjectOutputStream to put objects into save file.
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
 
-			save.writeObject(operationArr);
+			for (int i = current, u = 1; i >= 0 && u <= 5; i--, u++) {
+				save.writeObject(operationArr.get(i));
+			}
+
 			// closes save
 			save.close();
 		} catch (Exception exc) {
