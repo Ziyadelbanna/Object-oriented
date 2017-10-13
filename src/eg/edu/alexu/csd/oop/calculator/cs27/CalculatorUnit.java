@@ -51,6 +51,10 @@ public class CalculatorUnit implements Calculator {
 	@Override
 	public String getResult() {
 		
+		if (size ==0) {
+			throw null;
+		}
+		
 		num1 = 0;
 		num2 = 0;
 		boolean visited = false;
@@ -123,7 +127,7 @@ public class CalculatorUnit implements Calculator {
 
 	@Override
 	public String next() {
-		if (current + 1 >= operationArr.size()) {
+		if (current + 1 == operationArr.size()) {
 			throw null;
 		}
 		current++;
