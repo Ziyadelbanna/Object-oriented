@@ -24,7 +24,9 @@ public class CalculatorUnit implements Calculator {
 		operationArr.add(s);
 		size = operationArr.size();
 		last = size - 1;
-		current = last;
+		if (size == 1) {
+			current = last;
+		}
 
 	}
 
@@ -33,12 +35,6 @@ public class CalculatorUnit implements Calculator {
 		boolean visited = false;
 		boolean opp = false;
 
-		if (operationArr.equals("3-4")) {
-			return "-1.0";
-		}
-		if (operationArr.equals("3.5-4.35")) {
-			return "-0.8499999999999996";
-		}
 		for (int i = 0, v = 0; i < operationArr.getLast().length(); i++) {
 			if (Character.getNumericValue(operationArr.getLast().charAt(i)) != -1 && !visited) {
 				num1 = num1 * 10 + (Character.getNumericValue(operationArr.getLast().charAt(i)));
@@ -137,6 +133,7 @@ public class CalculatorUnit implements Calculator {
 
 	@Override
 	public void load() {
+		
 
 	}
 
