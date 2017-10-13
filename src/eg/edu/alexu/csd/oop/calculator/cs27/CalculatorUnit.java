@@ -17,9 +17,9 @@ public class CalculatorUnit implements Calculator {
 	private char op;
 	private String result;
 	private double res;
-	private int last;
-	private int size;
-	private int current;
+	private int last = -1 ;
+	private int size = 0 ;
+	private int current = -1;
 
 	@Override
 	public void input(String s) {
