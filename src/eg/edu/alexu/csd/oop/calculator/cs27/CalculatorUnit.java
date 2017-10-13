@@ -27,25 +27,8 @@ public class CalculatorUnit implements Calculator {
 		operationArr.add(s);
 		size = operationArr.size();
 		last = size - 1;
-		
-		if (size >5)
-		{
-			operationNew = new LinkedList();
-			for (int i = last, u = 0; i >= 0 && u <= 4 ; i--, u++) {
-				operationNew.add(operationArr.get(i));
-			}
-			operationArr = new LinkedList();
-
-			for (int i = operationNew.size() - 1; i >= 0; i--) {
-
-				operationArr.add(operationNew.get(i));
-			}
-			
-			
-		}
-		size = operationArr.size();
-		last = size - 1;
 		current = last;
+		
 	}
 
 	@Override
