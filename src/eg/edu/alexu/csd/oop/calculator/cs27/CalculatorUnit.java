@@ -126,6 +126,7 @@ public class CalculatorUnit implements Calculator {
 			for (int i = last, u = 1; i >= 0 && u <= 5; i--, u++) {
 				save.writeObject(operationArr.get(i));
 			}
+			current = last;
 
 			// closes save
 			save.close();
