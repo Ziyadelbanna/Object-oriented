@@ -1,6 +1,8 @@
 package eg.edu.alexu.csd.oop.calculator.cs27;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -10,6 +12,7 @@ import eg.edu.alexu.csd.oop.calculator.Calculator;
 public class CalculatorUnit implements Calculator {
 
 	LinkedList<String> operationArr = new LinkedList();
+	LinkedList<String> operationNew;
 	private double num1, num2 = 0;
 	private char op;
 	private String result;
@@ -27,7 +30,6 @@ public class CalculatorUnit implements Calculator {
 		if (size == 1) {
 			current = last;
 		}
-
 	}
 
 	@Override
@@ -119,7 +121,7 @@ public class CalculatorUnit implements Calculator {
 			// Create an ObjectOutputStream to put objects into save file.
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
 
-			for (int i = current, u = 1; i >= 0 && u <= 5; i--, u++) {
+			for (int i = last, u = 1; i >= 0 && u <= 5; i--, u++) {
 				save.writeObject(operationArr.get(i));
 			}
 
@@ -133,7 +135,30 @@ public class CalculatorUnit implements Calculator {
 
 	@Override
 	public void load() {
-		
+
+		operationNew = new LinkedList();
+
+		try {
+			// Open file .
+			FileInputStream loadfile = new FileInputStream("SavedObj.sav");
+
+			// Create an ObjectInputStream to get objects from load file.
+			ObjectInputStream load = new ObjectInputStream(loadfile);
+
+			for (int i = last, u = 0; i >= 0 && u <= 4 && load.readObject() != null; i--, u++) {
+				operationNew.add(operationArr.get(i));
+			}
+			operationArr = new LinkedList();
+
+			for (int i = operationNew.size() - 1; i >= 0; i--) {
+
+				operationArr.add(operationNew.get(i));
+			}
+
+			load.close();
+		} catch (Exception exc) {
+			exc.printStackTrace(); // If there was an error, print the info.
+		}
 
 	}
 
