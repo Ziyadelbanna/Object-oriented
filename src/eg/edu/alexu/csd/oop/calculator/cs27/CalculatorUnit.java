@@ -27,9 +27,7 @@ public class CalculatorUnit implements Calculator {
 		operationArr.add(s);
 		size = operationArr.size();
 		last = size - 1;
-		if (size == 1) {
-			current = last;
-		}
+		current = last;
 	}
 
 	@Override
@@ -37,28 +35,28 @@ public class CalculatorUnit implements Calculator {
 		boolean visited = false;
 		boolean opp = false;
 
-		for (int i = 0, v = 0; i < operationArr.getLast().length(); i++) {
-			if (Character.getNumericValue(operationArr.getLast().charAt(i)) != -1 && !visited) {
-				num1 = num1 * 10 + (Character.getNumericValue(operationArr.getLast().charAt(i)));
-			} else if (operationArr.getLast().charAt(i) == '.' && !visited) {
+		for (int i = 0, v = 0; i < operationArr.get(current).length(); i++) {
+			if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && !visited) {
+				num1 = num1 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
+			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
 				int u = 1;
-				while (Character.getNumericValue(operationArr.getLast().charAt(i + 1)) != -1) {
-					num1 = num1 + (Character.getNumericValue(operationArr.getLast().charAt(i + 1)) * Math.pow(10, -u));
+				while (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) != -1) {
+					num1 = num1 + (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) * Math.pow(10, -u));
 					u++;
 					i++;
 				}
 				visited = true;
-			} else if (Character.getNumericValue(operationArr.getLast().charAt(i)) == -1 && !opp) {
-				op = operationArr.getLast().charAt(i);
+			} else if (Character.getNumericValue(operationArr.get(current).charAt(i)) == -1 && !opp) {
+				op = operationArr.get(current).charAt(i);
 				opp = true;
 				visited = true;
-			} else if (Character.getNumericValue(operationArr.getLast().charAt(i)) != -1 && visited) {
-				num2 = num2 * 10 + (Character.getNumericValue(operationArr.getLast().charAt(i)));
-			} else if (operationArr.getLast().charAt(i) == '.') {
+			} else if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && visited) {
+				num2 = num2 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
+			} else if (operationArr.get(current).charAt(i) == '.') {
 				i++;
 				int u = 1;
-				while (i < operationArr.getLast().length()) {
-					num2 = num2 + (Character.getNumericValue(operationArr.getLast().charAt(i)) * Math.pow(10, -u));
+				while (i < operationArr.get(current).length()) {
+					num2 = num2 + (Character.getNumericValue(operationArr.get(current).charAt(i)) * Math.pow(10, -u));
 					u++;
 					i++;
 				}
