@@ -32,10 +32,13 @@ public class CalculatorUnit implements Calculator {
 
 	@Override
 	public String getResult() {
+		
+		num1 = 0;
+		num2 = 0;
 		boolean visited = false;
 		boolean opp = false;
 
-		for (int i = 0, v = 0; i < operationArr.get(current).length(); i++) {
+		for (int i = 0; i < operationArr.get(current).length(); i++) {
 			if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && !visited) {
 				num1 = num1 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
 			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
