@@ -17,9 +17,10 @@ public class CalculatorUnit implements Calculator {
 	private char op;
 	private String result;
 	private double res;
-	private int last = -1 ;
-	private int size = 0 ;
+	private int last = -1;
+	private int size = 0;
 	private int current = -1;
+	private int slcount = 0;
 
 	@Override
 	public void input(String s) {
@@ -28,16 +29,32 @@ public class CalculatorUnit implements Calculator {
 		size = operationArr.size();
 		last = size - 1;
 		current = last;
-		
+		if (size > 5) {
+			operationNew = new LinkedList();
+			for (int i = last, u = 0; i >= 0 && u <= 4; i--, u++) {
+				operationNew.add(operationArr.get(i));
+			}
+			operationArr = new LinkedList();
+
+			for (int i = operationNew.size() - 1; i >= 0; i--) {
+
+				operationArr.add(operationNew.get(i));
+			}
+
+		}
+		size = operationArr.size();
+		last = size - 1;
+		current = last;
+
 	}
 
 	@Override
 	public String getResult() {
-		
-		if (size ==0) {
+
+		if (size == 0) {
 			throw null;
 		}
-		
+
 		num1 = 0;
 		num2 = 0;
 		boolean visited = false;
@@ -49,7 +66,8 @@ public class CalculatorUnit implements Calculator {
 			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
 				int u = 1;
 				while (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) != -1) {
-					num1 = num1 + (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) * Math.pow(10, -u));
+					num1 = num1
+							+ (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) * Math.pow(10, -u));
 					u++;
 					i++;
 				}
@@ -119,7 +137,7 @@ public class CalculatorUnit implements Calculator {
 
 	@Override
 	public void save() {
-
+		slcount = 0;
 		try {
 			// opens file
 			FileOutputStream saveFile = new FileOutputStream("SavedObj.sav");
@@ -127,9 +145,10 @@ public class CalculatorUnit implements Calculator {
 			// Create an ObjectOutputStream to put objects into save file.
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
 
-			for (int i = last, u = 1; i >= 0 && u <= 5; i--, u++) {
+			for (int i = 0; i <= current; i++) {
 				save.writeObject(operationArr.get(i));
 			}
+			slcount = current;
 
 			// closes save
 			save.close();
@@ -151,17 +170,16 @@ public class CalculatorUnit implements Calculator {
 			// Create an ObjectInputStream to get objects from load file.
 			ObjectInputStream load = new ObjectInputStream(loadfile);
 
-			for (int i = last, u = 0; i >= 0 && u <= 4 && load.readObject() != null; i--, u++) {
-				operationNew.add(operationArr.get(i));
+			for (int i = 0; i <= slcount; i++) {
+				operationNew.add((String) load.readObject());
 			}
 			operationArr = new LinkedList();
 
-			for (int i = operationNew.size() - 1; i >= 0; i--) {
+			for (int i = 0; i < operationNew.size(); i++) {
 
 				operationArr.add(operationNew.get(i));
 			}
-			last = operationArr.size()-1;
-			
+			last = operationArr.size() - 1;
 
 			load.close();
 		} catch (Exception exc) {
