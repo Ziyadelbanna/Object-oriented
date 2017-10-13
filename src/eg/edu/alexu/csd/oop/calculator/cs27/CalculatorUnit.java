@@ -180,6 +180,7 @@ public class CalculatorUnit implements Calculator {
 				operationArr.add(operationNew.get(i));
 			}
 			last = operationArr.size() - 1;
+			current = slcount;
 
 			load.close();
 		} catch (Exception exc) {
