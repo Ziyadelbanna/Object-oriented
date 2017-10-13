@@ -28,10 +28,7 @@ public class CalculatorUnit implements Calculator {
 		size = operationArr.size();
 		last = size - 1;
 		
-		if (size== 1)
-		{
-			current = last;
-		}
+		current = last;
 	}
 
 	@Override
