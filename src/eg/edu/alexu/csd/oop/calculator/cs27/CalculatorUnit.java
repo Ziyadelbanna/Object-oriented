@@ -28,6 +28,23 @@ public class CalculatorUnit implements Calculator {
 		size = operationArr.size();
 		last = size - 1;
 		
+		if (size >5)
+		{
+			operationNew = new LinkedList();
+			for (int i = last, u = 0; i >= 0 && u <= 4 ; i--, u++) {
+				operationNew.add(operationArr.get(i));
+			}
+			operationArr = new LinkedList();
+
+			for (int i = operationNew.size() - 1; i >= 0; i--) {
+
+				operationArr.add(operationNew.get(i));
+			}
+			
+			
+		}
+		size = operationArr.size();
+		last = size - 1;
 		current = last;
 	}
 
@@ -126,7 +143,6 @@ public class CalculatorUnit implements Calculator {
 			for (int i = last, u = 1; i >= 0 && u <= 5; i--, u++) {
 				save.writeObject(operationArr.get(i));
 			}
-			current = last;
 
 			// closes save
 			save.close();
@@ -157,6 +173,8 @@ public class CalculatorUnit implements Calculator {
 
 				operationArr.add(operationNew.get(i));
 			}
+			last = operationArr.size()-1;
+			
 
 			load.close();
 		} catch (Exception exc) {
