@@ -155,7 +155,7 @@ public class CalculatorUnit implements Calculator {
 			for (int i = 0; i < operationArr.size(); i++) {
 				save.writeObject(operationArr.get(i));
 			}
-			slcount = current;
+			slcount = operationArr.size();
 
 			// closes save
 			save.close();
