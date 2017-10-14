@@ -109,7 +109,16 @@ public class CalculatorUnit implements Calculator {
 	@Override
 	public String current() {
 
-		return operationArr.get(current);
+		String operation;
+		try {
+			operation = operationArr.get(current);
+		} catch (IndexOutOfBoundsException ioe) {
+
+			return null;
+
+		}
+
+		return operation;
 	}
 
 	@Override
