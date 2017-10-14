@@ -61,7 +61,8 @@ public class CalculatorUnit implements Calculator {
 		boolean opp = false;
 
 		for (int i = 0; i < operationArr.get(current).length(); i++) {
-			if (Character.getNumericValue(operationArr.get(current).charAt(i)) 
+			if (Character.getNumericValue
+					(operationArr.get(current).charAt(i)) 
 					!= -1 && !visited) {
 				num1 = num1 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
 			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
