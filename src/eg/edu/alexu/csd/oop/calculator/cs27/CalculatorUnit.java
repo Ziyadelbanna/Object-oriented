@@ -64,27 +64,39 @@ public class CalculatorUnit implements Calculator {
 			if (Character.getNumericValue
 					(operationArr.get(current).charAt(i)) 
 					!= -1 && !visited) {
-				num1 = num1 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
-			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
+				num1 = num1 * 10 + 
+						(Character.getNumericValue
+								(operationArr.get(current).charAt(i)));
+			} else if (operationArr.get(current).charAt(i) 
+					== '.' && !visited) {
 				int u = 1;
-				while (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) != -1) {
+				while (Character.getNumericValue
+						(operationArr.get(current).charAt(i + 1)) != -1) {
 					num1 = num1
-							+ (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) * Math.pow(10, -u));
+							+ (Character.getNumericValue
+									(operationArr.get(current).charAt(i + 1))
+									* Math.pow(10, -u));
 					u++;
 					i++;
 				}
 				visited = true;
-			} else if (Character.getNumericValue(operationArr.get(current).charAt(i)) == -1 && !opp) {
+			} else if (Character.getNumericValue
+					(operationArr.get(current).charAt(i)) 
+					== -1 && !opp) {
 				op = operationArr.get(current).charAt(i);
 				opp = true;
 				visited = true;
-			} else if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && visited) {
-				num2 = num2 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
+			} else if (Character.getNumericValue
+					(operationArr.get(current).charAt(i)) != -1 && visited) {
+				num2 = num2 * 10 + (Character.getNumericValue
+						(operationArr.get(current).charAt(i)));
 			} else if (operationArr.get(current).charAt(i) == '.') {
 				i++;
 				int u = 1;
 				while (i < operationArr.get(current).length()) {
-					num2 = num2 + (Character.getNumericValue(operationArr.get(current).charAt(i)) * Math.pow(10, -u));
+					num2 = num2 + (Character.getNumericValue
+							(operationArr.get(current).charAt(i)) 
+							* Math.pow(10, -u));
 					u++;
 					i++;
 				}
@@ -176,10 +188,12 @@ public class CalculatorUnit implements Calculator {
 
 		try {
 			// Open file .
-			FileInputStream loadfile = new FileInputStream("SavedObj.sav");
+			FileInputStream loadfile
+			= new FileInputStream("SavedObj.sav");
 
 			// Create an ObjectInputStream to get objects from load file.
-			ObjectInputStream load = new ObjectInputStream(loadfile);
+			ObjectInputStream load
+			= new ObjectInputStream(loadfile);
 
 			for (int i = 0; i <= slcount; i++) {
 				operationNew.add((String) load.readObject());
