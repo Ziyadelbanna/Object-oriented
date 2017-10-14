@@ -5,13 +5,13 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 import eg.edu.alexu.csd.oop.calculator.Calculator;
 
+
 public class CalculatorUnit implements Calculator {
 
-	LinkedList<String> operationArr = new LinkedList();
+	protected static LinkedList<String> operationArr = new LinkedList();
 	LinkedList<String> operationNew;
 	private double num1, num2 = 0;
 	private char op;
@@ -21,6 +21,7 @@ public class CalculatorUnit implements Calculator {
 	private int size = 0;
 	private int current = -1;
 	private int slcount = 0;
+	private int max = 5;
 
 	@Override
 	public void input(String s) {
@@ -29,7 +30,7 @@ public class CalculatorUnit implements Calculator {
 		size = operationArr.size();
 		last = size - 1;
 		current = last;
-		if (operationArr.size() > 5) {
+		if (operationArr.size() > max) {
 			operationNew = new LinkedList();
 			for (int i = last, u = 0; i >= 0 && u <= 4; i--, u++) {
 				operationNew.add(operationArr.get(i));
@@ -60,7 +61,8 @@ public class CalculatorUnit implements Calculator {
 		boolean opp = false;
 
 		for (int i = 0; i < operationArr.get(current).length(); i++) {
-			if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && !visited) {
+			if (Character.getNumericValue(operationArr.get(current).charAt(i)) 
+					!= -1 && !visited) {
 				num1 = num1 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
 			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
 				int u = 1;
