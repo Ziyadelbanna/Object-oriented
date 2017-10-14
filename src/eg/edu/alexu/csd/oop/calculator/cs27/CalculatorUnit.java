@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 import eg.edu.alexu.csd.oop.calculator.Calculator;
 
-
 public class CalculatorUnit implements Calculator {
 
 	protected static LinkedList<String> operationArr = new LinkedList();
@@ -21,7 +20,6 @@ public class CalculatorUnit implements Calculator {
 	private int size = 0;
 	private int current = -1;
 	private int slcount = 0;
-	private int max = 5;
 
 	@Override
 	public void input(String s) {
@@ -30,7 +28,7 @@ public class CalculatorUnit implements Calculator {
 		size = operationArr.size();
 		last = size - 1;
 		current = last;
-		if (operationArr.size() > max) {
+		if (operationArr.size() > 5) {
 			operationNew = new LinkedList();
 			for (int i = last, u = 0; i >= 0 && u <= 4; i--, u++) {
 				operationNew.add(operationArr.get(i));
@@ -61,42 +59,28 @@ public class CalculatorUnit implements Calculator {
 		boolean opp = false;
 
 		for (int i = 0; i < operationArr.get(current).length(); i++) {
-			if (Character.getNumericValue
-					(operationArr.get(current).charAt(i)) 
-					!= -1 && !visited) {
-				num1 = num1 * 10 + 
-						(Character.getNumericValue
-								(operationArr.get(current).charAt(i)));
-			} else if (operationArr.get(current).charAt(i) 
-					== '.' && !visited) {
+			if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && !visited) {
+				num1 = num1 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
+			} else if (operationArr.get(current).charAt(i) == '.' && !visited) {
 				int u = 1;
-				while (Character.getNumericValue
-						(operationArr.get(current).charAt(i + 1)) != -1) {
+				while (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) != -1) {
 					num1 = num1
-							+ (Character.getNumericValue
-									(operationArr.get(current).charAt(i + 1))
-									* Math.pow(10, -u));
+							+ (Character.getNumericValue(operationArr.get(current).charAt(i + 1)) * Math.pow(10, -u));
 					u++;
 					i++;
 				}
 				visited = true;
-			} else if (Character.getNumericValue
-					(operationArr.get(current).charAt(i)) 
-					== -1 && !opp) {
+			} else if (Character.getNumericValue(operationArr.get(current).charAt(i)) == -1 && !opp) {
 				op = operationArr.get(current).charAt(i);
 				opp = true;
 				visited = true;
-			} else if (Character.getNumericValue
-					(operationArr.get(current).charAt(i)) != -1 && visited) {
-				num2 = num2 * 10 + (Character.getNumericValue
-						(operationArr.get(current).charAt(i)));
+			} else if (Character.getNumericValue(operationArr.get(current).charAt(i)) != -1 && visited) {
+				num2 = num2 * 10 + (Character.getNumericValue(operationArr.get(current).charAt(i)));
 			} else if (operationArr.get(current).charAt(i) == '.') {
 				i++;
 				int u = 1;
 				while (i < operationArr.get(current).length()) {
-					num2 = num2 + (Character.getNumericValue
-							(operationArr.get(current).charAt(i)) 
-							* Math.pow(10, -u));
+					num2 = num2 + (Character.getNumericValue(operationArr.get(current).charAt(i)) * Math.pow(10, -u));
 					u++;
 					i++;
 				}
@@ -188,12 +172,10 @@ public class CalculatorUnit implements Calculator {
 
 		try {
 			// Open file .
-			FileInputStream loadfile
-			= new FileInputStream("SavedObj.sav");
+			FileInputStream loadfile = new FileInputStream("SavedObj.sav");
 
 			// Create an ObjectInputStream to get objects from load file.
-			ObjectInputStream load
-			= new ObjectInputStream(loadfile);
+			ObjectInputStream load = new ObjectInputStream(loadfile);
 
 			for (int i = 0; i <= slcount; i++) {
 				operationNew.add((String) load.readObject());
