@@ -10,7 +10,7 @@ import eg.edu.alexu.csd.oop.calculator.Calculator;
 
 public class CalculatorUnit implements Calculator {
 
-	protected static LinkedList<String> operationArr = new LinkedList();
+	LinkedList<String> operationArr = new LinkedList();
 	LinkedList<String> operationNew;
 	private double num1, num2 = 0;
 	private char op;
