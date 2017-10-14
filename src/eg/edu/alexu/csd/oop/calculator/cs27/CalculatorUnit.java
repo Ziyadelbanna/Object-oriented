@@ -29,7 +29,7 @@ public class CalculatorUnit implements Calculator {
 		size = operationArr.size();
 		last = size - 1;
 		current = last;
-		if (size > 5) {
+		if (operationArr.size() > 5) {
 			operationNew = new LinkedList();
 			for (int i = last, u = 0; i >= 0 && u <= 4; i--, u++) {
 				operationNew.add(operationArr.get(i));
@@ -40,7 +40,6 @@ public class CalculatorUnit implements Calculator {
 
 				operationArr.add(operationNew.get(i));
 			}
-
 		}
 		size = operationArr.size();
 		last = size - 1;
@@ -52,7 +51,7 @@ public class CalculatorUnit implements Calculator {
 	public String getResult() {
 
 		if (size == 0) {
-			throw null;
+			return null;
 		}
 
 		num1 = 0;
@@ -116,7 +115,7 @@ public class CalculatorUnit implements Calculator {
 	@Override
 	public String prev() {
 		if (current - 1 < 0) {
-			throw null;
+			return null;
 		}
 
 		else {
@@ -129,7 +128,7 @@ public class CalculatorUnit implements Calculator {
 	@Override
 	public String next() {
 		if (current + 1 == operationArr.size()) {
-			throw null;
+			return null;
 		}
 		current++;
 		return operationArr.get(current);
@@ -145,7 +144,7 @@ public class CalculatorUnit implements Calculator {
 			// Create an ObjectOutputStream to put objects into save file.
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
 
-			for (int i = 0; i <= current; i++) {
+			for (int i = 0; i < operationArr.size(); i++) {
 				save.writeObject(operationArr.get(i));
 			}
 			slcount = current;
