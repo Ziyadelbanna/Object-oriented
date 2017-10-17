@@ -27,5 +27,4 @@ public interface Calculator {
 
 	/* Load from file the saved operations */
 	public void load();
-
 }

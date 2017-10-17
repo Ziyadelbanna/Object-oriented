@@ -20,7 +20,9 @@ public class CalculatorUnit implements Calculator {
 	private int size = 0;
 	private int current = -1;
 	private int slcount = 0;
+	
 
+	
 	@Override
 	public void input(String s) {
 
@@ -193,6 +195,7 @@ public class CalculatorUnit implements Calculator {
 		} catch (Exception exc) {
 			exc.printStackTrace(); // If there was an error, print the info.
 		}
+		
 
 	}
 
