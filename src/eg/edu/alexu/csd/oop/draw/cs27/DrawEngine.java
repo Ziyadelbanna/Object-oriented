@@ -88,10 +88,10 @@ public class DrawEngine implements DrawingEngine {
 				newshapes.add(shapeslists.get(currentindex).get(i));
 			}
 		}
+		shapeslists.add(new LinkedList<Shape>(newshapes));
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
-		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
 
@@ -118,10 +118,10 @@ public class DrawEngine implements DrawingEngine {
 				newshapes.add(shapeslists.get(currentindex).get(i));
 			}
 		}
+		shapeslists.add(new LinkedList<Shape>(newshapes));
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
-		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
 
