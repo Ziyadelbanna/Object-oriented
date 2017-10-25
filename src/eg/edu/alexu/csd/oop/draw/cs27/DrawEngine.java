@@ -151,18 +151,17 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (currentindex > 0) {
+		if (currentindex >= 0) {
 			currentindex--;
 			undo++;
 			redoo = true;
 		}
-		redoo = false;
 
 	}
 
 	public void redo() {
 
-		if (currentindex < shapeslists.size() - 1 && redoo) {
+		if (currentindex < shapeslists.size() - 1) {
 			currentindex++;
 			redo++;
 		}
