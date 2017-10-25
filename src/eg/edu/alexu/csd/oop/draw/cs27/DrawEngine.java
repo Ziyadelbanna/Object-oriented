@@ -28,6 +28,7 @@ public class DrawEngine implements DrawingEngine {
 	private int currentindex = 0;
 	private int undo, redo = 0;
 	boolean redoo = false;
+	boolean found = false;
 
 	public void refresh(Graphics canvas) {
 		
@@ -65,6 +66,16 @@ public class DrawEngine implements DrawingEngine {
 
 	public void removeShape(Shape shape) {
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
+		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			if (shapeslists.get(currentindex).get(i).equals(shape)) {
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			throw null;
+		}
+		else {found = false;}
 		if (currentindex != shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
@@ -87,6 +98,18 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
+		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			if (shapeslists.get(currentindex).get(i).equals(oldShape)) {
+
+				found = true;break;
+			}
+		}
+		if (!found) {
+			throw null;
+		}
+		else {
+			found = false;
+		}
 
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (currentindex < shapeslists.size() - 1) {
