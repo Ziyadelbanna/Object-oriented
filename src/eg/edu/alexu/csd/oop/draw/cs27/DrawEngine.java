@@ -21,7 +21,7 @@ import eg.edu.alexu.csd.oop.draw.Shape;
 
 public class DrawEngine implements DrawingEngine {
 
-	saveandload sl = new saveandload();
+	//saveandload sl = new saveandload();
 	LinkedList<Shape> shapes;
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
