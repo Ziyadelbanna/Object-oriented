@@ -119,7 +119,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public Shape[] getShapes() {
 		if (currentindex == -1) {
-			throw null;
+			return null;
 		}
 
 		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
