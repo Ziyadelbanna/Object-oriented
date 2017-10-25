@@ -21,11 +21,12 @@ import eg.edu.alexu.csd.oop.draw.Shape;
 
 public class DrawEngine implements DrawingEngine {
 
+	saveandload sl = new saveandload();
 	LinkedList<Shape> shapes;
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
 	LinkedList<Integer> indices = new LinkedList();
-	private int currentindex = 0;
+	protected int currentindex = 0;
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
@@ -148,6 +149,7 @@ public class DrawEngine implements DrawingEngine {
 			currentindex++;
 			redo++;
 		} else {
+
 		}
 	}
 
@@ -157,60 +159,12 @@ public class DrawEngine implements DrawingEngine {
 
 	public void save(String path) {
 
-		if (path.toLowerCase().contains(".xml")) {
-			try {
-				File file = new File(path);
-				FileOutputStream fos = new FileOutputStream(file);
-				XMLEncoder en = new XMLEncoder(fos);
-
-				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-					en.writeObject(shapeslists.get(currentindex).get(i));
-				}
-				en.close();
-				fos.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		} else if (path.toLowerCase().contains(".json")) {
-			try (FileWriter file = new FileWriter(path)) {
-
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		} else {
-			throw null;
-		}
+		sl.save(path);
 
 	}
 
 	public void load(String path) {
-		if (path.toLowerCase().contains(".xml")) {
-			Shape[] sh = new Shape[shapeslists.get(currentindex).size()];
-			try {
-				File file = new File(path);
-				FileInputStream fis = new FileInputStream(file);
-				XMLDecoder de = new XMLDecoder(fis);
-
-				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-					sh[i] = (Shape) de.readObject();
-				}
-				de.close();
-				fis.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-
-		else if (path.toLowerCase().contains(".json")) {
-			try (FileWriter file = new FileWriter(path)) {
-
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		} else {
-			throw null;
-		}
+		sl.load(path);
 
 	}
-
 }
