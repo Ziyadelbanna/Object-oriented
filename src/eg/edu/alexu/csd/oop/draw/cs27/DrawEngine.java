@@ -61,7 +61,7 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
-		if (shapeslists.size() > 21) {
+		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
 		redoo = false;
