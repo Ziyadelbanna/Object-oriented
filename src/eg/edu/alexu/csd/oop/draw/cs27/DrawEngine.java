@@ -166,7 +166,7 @@ public class DrawEngine implements DrawingEngine {
 
 		// if (redo <= 20) {
 		// if (redoo) {
-		if (currentindex < shapeslists.size()) {
+		if (currentindex < shapeslists.size()-1) {
 			currentindex++;
 			redo++;
 		}
