@@ -90,7 +90,7 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
-		if (shapeslists.size() > 20) {
+		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
 		// redo = 0;
