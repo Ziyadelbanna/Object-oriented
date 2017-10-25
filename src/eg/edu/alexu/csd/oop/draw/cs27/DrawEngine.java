@@ -152,7 +152,7 @@ public class DrawEngine implements DrawingEngine {
 	public void undo() {
 
 		// if (undo <= 20) {
-		if (currentindex >= 0) {
+		if (currentindex > 0) {
 			currentindex--;
 			undo++;
 			redoo = true;
