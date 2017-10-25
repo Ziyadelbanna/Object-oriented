@@ -118,10 +118,6 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
-		if (undo + redo > 20) {
-			Shape[] shapes = new Shape[21];
-			return shapes;
-		}
 		if (currentindex == -1) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
@@ -143,7 +139,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (undo + redo < 20 && currentindex >= 0) {
+		if (undo + redo <= 20 && currentindex >= 0) {
 			currentindex--;
 			undo++;
 			redoo = true;
@@ -154,7 +150,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 
-		if (redo + undo < 20 && currentindex < shapeslists.size() && redoo) {
+		if (redo + undo <= 20 && currentindex < shapeslists.size() && redoo) {
 			currentindex++;
 			redo++;
 		} else {
