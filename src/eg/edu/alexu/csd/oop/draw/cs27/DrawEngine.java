@@ -62,8 +62,8 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
 		redoo = false;
-		// redo = 0;
-		/// undo = 0;
+		 redo = 0;
+		 undo = 0;
 		currentindex = shapeslists.size() - 1;
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
@@ -93,8 +93,8 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
-		// redo = 0;
-		// undo = 0;
+		 redo = 0;
+		 undo = 0;
 
 	}
 
@@ -122,8 +122,8 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
-		// redo = 0;
-		// undo = 0;
+		 redo = 0;
+		 undo = 0;
 	}
 
 	public Shape[] getShapes() {
