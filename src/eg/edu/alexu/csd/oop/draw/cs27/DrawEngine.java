@@ -130,7 +130,7 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
-		if (currentindex == -1) {
+		if (shapeslists.get(currentindex).size() == 0) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
 
@@ -151,28 +151,20 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		// if (undo <= 20) {
-		if (currentindex >= 0) {
+		if (currentindex > 0) {
 			currentindex--;
 			undo++;
 			redoo = true;
 		}
-		// } else {
-		// }
 
 	}
 
 	public void redo() {
 
-		// if (redo <= 20) {
-		// if (redoo) {
-		if (currentindex < shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1 && redoo) {
 			currentindex++;
 			redo++;
 		}
-		// }
-		// } else {
-		// }
 	}
 
 	public int size() {
