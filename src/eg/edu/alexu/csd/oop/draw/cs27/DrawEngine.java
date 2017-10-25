@@ -163,10 +163,10 @@ public class DrawEngine implements DrawingEngine {
 	public void redo() {
 
 		// if (redo <= 20) {
-		if (redoo) {
+		//if (redoo) {
 			currentindex++;
 			redo++;
-		}
+		//}
 		// } else {
 		// }
 	}
