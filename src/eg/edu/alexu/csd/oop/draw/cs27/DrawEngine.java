@@ -90,7 +90,7 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
-		if (shapeslists.size() > 21) {
+		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
 		// redo = 0;
@@ -119,7 +119,7 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
-		if (shapeslists.size() > 21) {
+		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
 		// redo = 0;
@@ -148,7 +148,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (undo <= 20) {
+		if (undo + redo <= 20) {
 			currentindex--;
 			undo++;
 			redoo = true;
@@ -159,7 +159,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 
-		if (redo <= 20) {
+		if (redo + undo <= 20) {
 			currentindex++;
 			redo++;
 		} else {
