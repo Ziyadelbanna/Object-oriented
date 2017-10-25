@@ -21,7 +21,7 @@ import eg.edu.alexu.csd.oop.draw.Shape;
 
 public class DrawEngine implements DrawingEngine {
 
-	//saveandload sl = new saveandload();
+	// saveandload sl = new saveandload();
 	LinkedList<Shape> shapes;
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
@@ -62,8 +62,8 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
 		redoo = false;
-	//	redo = 0;
-		//undo = 0;
+		// redo = 0;
+		// undo = 0;
 		currentindex = shapeslists.size() - 1;
 	}
 
@@ -87,8 +87,8 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
-		//redo = 0;
-		//undo = 0;
+		// redo = 0;
+		// undo = 0;
 
 	}
 
@@ -113,12 +113,15 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
-		//redo = 0;
-		//undo = 0;
+		// redo = 0;
+		// undo = 0;
 	}
 
 	public Shape[] getShapes() {
 
+		if (shapeslists.get(currentindex).size() == 0) {
+			return null;
+		}
 		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
 
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
@@ -158,12 +161,12 @@ public class DrawEngine implements DrawingEngine {
 
 	public void save(String path) {
 
-		//sl.save(path);
+		// sl.save(path);
 
 	}
 
 	public void load(String path) {
-		//sl.load(path);
+		// sl.load(path);
 
 	}
 }
