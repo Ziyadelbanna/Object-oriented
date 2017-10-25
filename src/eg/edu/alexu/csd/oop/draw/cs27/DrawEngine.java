@@ -61,13 +61,14 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
+		if (shapeslists.size() > 21) {
+			shapeslists.remove(0);
+		}
 		redoo = false;
 		redo = 0;
 		undo = 0;
 		currentindex = shapeslists.size() - 1;
-		if (shapeslists.size() > 21) {
-			shapeslists.remove(0);
-		}
+
 	}
 
 	public void removeShape(Shape shape) {
@@ -87,12 +88,13 @@ public class DrawEngine implements DrawingEngine {
 				newshapes.add(shapeslists.get(currentindex).get(i));
 			}
 		}
-		shapeslists.add(new LinkedList<Shape>(newshapes));
-		currentindex = shapeslists.size() - 1;
-		redoo = false;
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
+		shapeslists.add(new LinkedList<Shape>(newshapes));
+		currentindex = shapeslists.size() - 1;
+		redoo = false;
+
 		redo = 0;
 		undo = 0;
 
@@ -116,12 +118,13 @@ public class DrawEngine implements DrawingEngine {
 				newshapes.add(shapeslists.get(currentindex).get(i));
 			}
 		}
-		shapeslists.add(new LinkedList<Shape>(newshapes));
-		currentindex = shapeslists.size() - 1;
-		redoo = false;
 		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
+		shapeslists.add(new LinkedList<Shape>(newshapes));
+		currentindex = shapeslists.size() - 1;
+		redoo = false;
+
 		redo = 0;
 		undo = 0;
 	}
