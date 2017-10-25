@@ -138,7 +138,6 @@ public class DrawEngine implements DrawingEngine {
 			undo++;
 			redoo = true;
 		} else {
-			throw null;
 		}
 
 	}
@@ -149,7 +148,6 @@ public class DrawEngine implements DrawingEngine {
 			currentindex++;
 			redo++;
 		} else {
-			throw null;
 		}
 	}
 
