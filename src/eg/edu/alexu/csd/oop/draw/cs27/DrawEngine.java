@@ -139,7 +139,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (undo + redo <= 20 && currentindex >= 0) {
+		if (undo  <= 20 && currentindex >= 0) {
 			currentindex--;
 			undo++;
 			redoo = true;
@@ -150,7 +150,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 
-		if (redo + undo <= 20 && currentindex < shapeslists.size() && redoo) {
+		if (redo  <= 20 && currentindex < shapeslists.size() && redoo) {
 			currentindex++;
 			redo++;
 		} else {
