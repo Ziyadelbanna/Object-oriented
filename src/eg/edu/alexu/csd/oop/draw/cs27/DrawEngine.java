@@ -156,6 +156,7 @@ public class DrawEngine implements DrawingEngine {
 			undo++;
 			redoo = true;
 		}
+		redoo = false;
 
 	}
 
