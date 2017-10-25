@@ -130,7 +130,7 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
-		if (shapeslists.get(currentindex).size() == 0) {
+		if (currentindex == -1) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
 
@@ -151,7 +151,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (currentindex > 0) {
+		if (currentindex >= 0) {
 			currentindex--;
 			undo++;
 			redoo = true;
