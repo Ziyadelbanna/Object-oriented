@@ -137,8 +137,9 @@ public class DrawEngine implements DrawingEngine {
 			currentindex--;
 			undo++;
 			redoo = true;
+		} else {
+			throw null;
 		}
-		throw null;
 
 	}
 
@@ -147,8 +148,9 @@ public class DrawEngine implements DrawingEngine {
 		if (redo + undo < 20 && currentindex < shapeslists.size() && redoo) {
 			currentindex++;
 			redo++;
+		} else {
+			throw null;
 		}
-		throw null;
 	}
 
 	public int size() {
