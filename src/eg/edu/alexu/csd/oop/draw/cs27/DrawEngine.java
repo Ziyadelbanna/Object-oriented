@@ -25,14 +25,12 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
 	LinkedList<Integer> indices = new LinkedList();
-	private int edits = 0;
 	private int currentindex = 0;
 	private int undo, redo = 0;
 	boolean redoo = false;
-	private int oldx, newx = 0;
 
 	public void refresh(Graphics canvas) {
-
+		
 		if (canvas == null) {
 			throw null;
 		} else {
@@ -63,7 +61,6 @@ public class DrawEngine implements DrawingEngine {
 		}
 		redoo = false;
 		currentindex = shapeslists.size() - 1;
-		edits++;
 	}
 
 	public void removeShape(Shape shape) {
@@ -85,7 +82,6 @@ public class DrawEngine implements DrawingEngine {
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
-		edits++;
 		redoo = false;
 
 	}
@@ -93,7 +89,7 @@ public class DrawEngine implements DrawingEngine {
 	public void updateShape(Shape oldShape, Shape newShape) {
 
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
-		if (currentindex != shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
 				i--;
@@ -111,7 +107,6 @@ public class DrawEngine implements DrawingEngine {
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
-		edits++;
 		redoo = false;
 	}
 
