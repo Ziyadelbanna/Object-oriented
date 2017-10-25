@@ -69,7 +69,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void removeShape(Shape shape) {
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
-		if (currentindex != shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
 				i--;
