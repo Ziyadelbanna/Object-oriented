@@ -65,7 +65,7 @@ public class DrawEngine implements DrawingEngine {
 		// redo = 0;
 		/// undo = 0;
 		currentindex = shapeslists.size() - 1;
-		if (shapeslists.size() > 21) {
+		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
 	}
