@@ -118,6 +118,10 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
+		if (undo + redo > 20) {
+			Shape[] shapes = new Shape[21];
+			return shapes;
+		}
 		if (currentindex == -1) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
