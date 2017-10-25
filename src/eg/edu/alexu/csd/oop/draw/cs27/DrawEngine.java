@@ -159,12 +159,12 @@ public class DrawEngine implements DrawingEngine {
 
 	public void save(String path) {
 
-		sl.save(path);
+		//sl.save(path);
 
 	}
 
 	public void load(String path) {
-		sl.load(path);
+		//sl.load(path);
 
 	}
 }
