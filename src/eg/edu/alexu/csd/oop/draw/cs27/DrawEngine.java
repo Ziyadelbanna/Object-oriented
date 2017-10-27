@@ -33,16 +33,16 @@ public class DrawEngine implements DrawingEngine {
 
 	public void refresh(Graphics canvas) {
 
-		if (canvas == null) {
-			throw null;
-		} else {
-			g2 = (Graphics2D) canvas;
-			for (Shape l : shapeslists.get(currentindex)) {
-				l.draw(g2);
-			}
+		// if (canvas == null) {
+		/// throw null;
+		// } else {
+		// g2 = (Graphics2D) canvas;
+		for (Shape l : shapeslists.get(currentindex)) {
+			l.draw(canvas);
 		}
-
 	}
+
+	// }
 
 	public void addShape(Shape shape) {
 		if (currentindex < shapeslists.size() - 1) {
