@@ -50,11 +50,6 @@ public class DrawShape implements Shape {
 	}
 
 	public void draw(Graphics canvas) {
-		g2 = (Graphics2D) canvas;
-		BasicStroke B = new BasicStroke(fs);
-		g2.setStroke(B);
-		g2.setColor(getColor());
-		g2.drawLine(10, 10, 20, 20);
 	}
 
 	public Object clone() throws CloneNotSupportedException {
