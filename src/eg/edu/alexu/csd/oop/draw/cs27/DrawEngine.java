@@ -204,26 +204,19 @@ public class DrawEngine implements DrawingEngine {
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
-		} else if (path.toLowerCase().contains(".json")) {
-
-			JSONArray list = new JSONArray();
-			JSONObject obj = new JSONObject();
-			for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-				list.add(shapeslists.get(currentindex).get(i));
-			}
-			obj.put("Shapes", list);
-
-			try (FileWriter file = new FileWriter(path)) {
-
-				file.write(obj.toString());
-				file.flush();
-
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		} else {
-			throw null;
-		}
+		} /*
+			 * else if (path.toLowerCase().contains(".json")) {
+			 * 
+			 * JSONArray list = new JSONArray(); JSONObject obj = new JSONObject(); for (int
+			 * i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			 * list.add(shapeslists.get(currentindex).get(i)); } obj.put("Shapes", list);
+			 * 
+			 * try (FileWriter file = new FileWriter(path)) {
+			 * 
+			 * file.write(obj.toString()); file.flush();
+			 * 
+			 * } catch (IOException ex) { ex.printStackTrace(); }
+			 */
 	}
 
 	public void load(String path) {
@@ -245,30 +238,21 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 
-		else if (path.toLowerCase().contains(".json")) {
-			JSONParser parser = new JSONParser();
-			try (FileWriter file = new FileWriter(path)) {
-				Object obj = parser.parse(new FileReader(path));
-				JSONObject jsonObject = (JSONObject) obj;
-				JSONArray shapes = (JSONArray) jsonObject.get("Shapes");
-
-				Iterator<String> iterator = shapes.iterator();
-
-				LinkedList<Shape> loaded = new LinkedList<Shape>();
-				// while (iterator.hasNext()) {
-				// loaded.add((Shape) iterator.next());
-				// }//
-
-			} catch (FileNotFoundException ex) {
-				ex.printStackTrace();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}  catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		} else {
-			throw null;
-		}
+		/*
+		 * else if (path.toLowerCase().contains(".json")) { JSONParser parser = new
+		 * JSONParser(); try (FileWriter file = new FileWriter(path)) { Object obj =
+		 * parser.parse(new FileReader(path)); JSONObject jsonObject = (JSONObject) obj;
+		 * JSONArray shapes = (JSONArray) jsonObject.get("Shapes");
+		 * 
+		 * Iterator<String> iterator = shapes.iterator();
+		 * 
+		 * LinkedList<Shape> loaded = new LinkedList<Shape>(); // while
+		 * (iterator.hasNext()) { // loaded.add((Shape) iterator.next()); // }//
+		 * 
+		 * } catch (FileNotFoundException ex) { ex.printStackTrace(); } catch
+		 * (IOException ex) { ex.printStackTrace(); } catch (Exception ex) {
+		 * ex.printStackTrace(); } } else { throw null; }
+		 */
 
 	}
 }
