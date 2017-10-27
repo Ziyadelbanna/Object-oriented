@@ -11,7 +11,7 @@ public class DrawShape implements Shape {
 	protected Point p;
 	Color currentcolor;
 	private double length, bs = 0.0;
-
+	private float fs = 10;
 	Color fillcolor;
 	Graphics2D g2;
 
