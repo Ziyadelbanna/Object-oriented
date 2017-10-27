@@ -51,12 +51,10 @@ public class DrawShape implements Shape {
 
 	public void draw(Graphics canvas) {
 		g2 = (Graphics2D) canvas;
-		// float fs = (line.get("fontsize")).floatValue();
 		BasicStroke B = new BasicStroke(fs);
 		g2.setStroke(B);
 		g2.setColor(getColor());
-		// g2.drawLine(getPosition().x, getPosition().y, (int)
-		// line.get("x2").intValue(), (int) line.get("y2").intValue());
+		g2.drawLine(10, 10, 20, 20);
 	}
 
 	public Object clone() throws CloneNotSupportedException {
