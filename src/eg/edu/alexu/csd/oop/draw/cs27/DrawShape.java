@@ -10,7 +10,10 @@ public class DrawShape implements Shape {
 
 	protected Point p;
 	Color currentcolor;
+	private double length, bs = 0.0;
+
 	Color fillcolor;
+	Graphics2D g2;
 
 	public void setPosition(Point position) {
 
@@ -47,6 +50,13 @@ public class DrawShape implements Shape {
 	}
 
 	public void draw(Graphics canvas) {
+		g2 = (Graphics2D) canvas;
+		// float fs = (line.get("fontsize")).floatValue();
+		BasicStroke B = new BasicStroke(fs);
+		g2.setStroke(B);
+		g2.setColor(getColor());
+		// g2.drawLine(getPosition().x, getPosition().y, (int)
+		// line.get("x2").intValue(), (int) line.get("y2").intValue());
 	}
 
 	public Object clone() throws CloneNotSupportedException {
