@@ -41,6 +41,9 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
+		if (shape == null) {
+			throw null;
+		}
 		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
@@ -70,6 +73,9 @@ public class DrawEngine implements DrawingEngine {
 
 	public void removeShape(Shape shape) {
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
+		if (shape == null) {
+			throw null;
+		}
 		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
@@ -99,6 +105,9 @@ public class DrawEngine implements DrawingEngine {
 
 	public void updateShape(Shape oldShape, Shape newShape) {
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
+		if (oldShape == null || newShape == null) {
+			throw null;
+		}
 		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
