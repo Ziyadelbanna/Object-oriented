@@ -36,8 +36,9 @@ public class DrawEngine implements DrawingEngine {
 		if (canvas == null) {
 			throw null;
 		} else {
+			g2 = (Graphics2D) canvas;
 			for (Shape l : shapeslists.get(currentindex)) {
-				l.draw(canvas);
+				l.draw(g2);
 			}
 		}
 
