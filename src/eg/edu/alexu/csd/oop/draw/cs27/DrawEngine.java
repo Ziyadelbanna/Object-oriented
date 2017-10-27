@@ -24,13 +24,16 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<Shape> shapes;
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
-	LinkedList<Integer> indices = new LinkedList();
 	protected int currentindex = 0;
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
 
 	public void refresh(Graphics canvas) {
+
+		if (currentindex == -1) {
+			throw null;
+		}
 
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			shapeslists.get(currentindex).get(i).draw(canvas);
