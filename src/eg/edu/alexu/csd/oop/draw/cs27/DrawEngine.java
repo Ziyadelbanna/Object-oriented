@@ -21,7 +21,6 @@ import eg.edu.alexu.csd.oop.draw.Shape;
 
 public class DrawEngine implements DrawingEngine {
 
-	// saveandload sl = new saveandload();
 	LinkedList<Shape> shapes;
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
@@ -36,8 +35,8 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() == 0) {
 			throw null;
 		}
-		for (Shape l : shapeslists.get(currentindex)) {
-			l.draw(canvas);
+		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			shapeslists.get(currentindex).get(i).draw(canvas);
 		}
 	}
 
