@@ -32,11 +32,12 @@ public class DrawEngine implements DrawingEngine {
 
 	public void refresh(Graphics canvas) {
 
+		canvas = g2;
 		if (shapeslists.size() == 0) {
 			throw null;
 		}
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			shapeslists.get(currentindex).get(i).draw(canvas);
+			shapeslists.get(currentindex).get(i).draw(g2);
 		}
 	}
 
