@@ -53,6 +53,7 @@ public class DrawEngine implements DrawingEngine {
 		if (shape.equals(null)) {
 			throw null;
 		}
+
 		if (currentindex < shapeslists.size() - 1 && !emptyshapes) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
@@ -128,7 +129,7 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-		
+
 		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
@@ -164,12 +165,11 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (currentindex > 0) {
-			currentindex--;
-		}
-		else if (currentindex == 0) {
+		if (currentindex == 0) {
 			getshapes = new Shape[0];
 			emptyshapes = true;
+		} else if (currentindex > 0) {
+			currentindex--;
 		}
 	}
 
@@ -178,7 +178,7 @@ public class DrawEngine implements DrawingEngine {
 		if (emptyshapes) {
 			currentindex = 0;
 			emptyshapes = false;
-		} else if (currentindex < shapeslists.size() - 1) {
+		} else if (currentindex < shapeslists.size() - 1 && !emptyshapes) {
 			currentindex++;
 		}
 	}
