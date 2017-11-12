@@ -49,6 +49,7 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
+		emptyshapes =false;
 		if (shape.equals(null)) {
 			throw null;
 		}
@@ -112,6 +113,7 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
+		emptyshapes = false;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
