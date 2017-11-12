@@ -128,11 +128,11 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
+		
 		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
-		redoo = false;
 
 	}
 
