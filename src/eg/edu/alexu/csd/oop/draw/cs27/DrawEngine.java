@@ -27,7 +27,7 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<Shape> shapes;
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
-	protected int currentindex = -1;
+	protected int currentindex = 0;
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
@@ -177,10 +177,8 @@ public class DrawEngine implements DrawingEngine {
 
 		if (currentindex > 0) {
 			currentindex--;
-			undo++;
-			redoo = true;
 		}
-		if (currentindex == 0)
+		else if (currentindex == 0)
 		{
 			emptyshapes = true;
 		}
@@ -189,15 +187,15 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 
-		if (currentindex < shapeslists.size() - 1) {
-			currentindex++;
-			redo++;
-		}
 		if (currentindex==0 && emptyshapes)
 		{
 			currentindex =0;
 			emptyshapes = false;
 		}
+		if (currentindex < shapeslists.size() - 1) {
+			currentindex++;
+		}
+		
 	}
 
 	public int size() {
