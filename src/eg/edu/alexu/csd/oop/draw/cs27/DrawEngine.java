@@ -61,15 +61,14 @@ public class DrawEngine implements DrawingEngine {
 			}
 			currentindex = shapeslists.size() - 1;
 		}
-		if (emptyshapes)
-		{
+		if (emptyshapes) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists = new LinkedList<LinkedList<Shape>>();
 			shapeslists.add(new LinkedList<Shape>(shapes));
 			emptyshapes = false;
 		}
-		else if (shapeslists.size() == 0) {
+		if (shapeslists.size() == 0) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 
