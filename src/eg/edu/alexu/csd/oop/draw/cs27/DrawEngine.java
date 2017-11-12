@@ -3,6 +3,8 @@ package eg.edu.alexu.csd.oop.draw.cs27;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -191,56 +193,57 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void save(String path) {
-		//
-		//// if (path.toLowerCase().contains(".xml")) {
-		//// try {
-		//// File file = new File(path);
-		//// FileOutputStream fos = new FileOutputStream(file);
-		//// XMLEncoder en = new XMLEncoder(fos);
-		////
-		//// for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-		//// en.writeObject(shapeslists.get(currentindex).get(i));
-		//// }
-		//// en.close();
-		//// fos.close();
-		//// } catch (IOException ex) {
-		//// ex.printStackTrace();
-		//// }
-		//// }
-		// * else if (path.toLowerCase().contains(".json")) {
-		// *
-		// * JSONArray list = new JSONArray(); JSONObject obj = new JSONObject(); for
-		// (int
-		// * i = 0; i < shapeslists.get(currentindex).size(); i++) {
-		// * list.add(shapeslists.get(currentindex).get(i)); } obj.put("Shapes", list);
-		// *
-		// * try (FileWriter file = new FileWriter(path)) {
-		// *
-		// * file.write(obj.toString()); file.flush();
-		// *
-		// * } catch (IOException ex) { ex.printStackTrace(); }
-		// */
+		
+		 if (path.toLowerCase().contains(".xml")) {
+		 try {
+		 File file = new File(path);
+		 FileOutputStream fos = new FileOutputStream(file);
+		 XMLEncoder en = new XMLEncoder(fos);
+		
+		 for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+		 en.writeObject(shapeslists.get(currentindex).get(i));
+		 }
+		 en.close();
+		 fos.close();
+		 } catch (IOException ex) {
+		 ex.printStackTrace();
+		 }
+		 }
+		 /*
+		 * else if (path.toLowerCase().contains(".json")) {
+		 *
+		 * JSONArray list = new JSONArray(); JSONObject obj = new JSONObject(); for
+		 (int
+		 * i = 0; i < shapeslists.get(currentindex).size(); i++) {
+		 * list.add(shapeslists.get(currentindex).get(i)); } obj.put("Shapes", list);
+		 *
+		 * try (FileWriter file = new FileWriter(path)) {
+		 *
+		 * file.write(obj.toString()); file.flush();
+		 *
+		 * } catch (IOException ex) { ex.printStackTrace(); }
+		 */
 	}
 
 	public void load(String path) {
-		// if (path.toLowerCase().contains(".xml")) {
-		// LinkedList<Shape> loaded = new LinkedList<Shape>();
-		// try {
-		// File file = new File(path);
-		// FileInputStream fis = new FileInputStream(file);
-		// XMLDecoder de = new XMLDecoder(fis);
-		//
-		// for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-		// loaded.add((Shape) de.readObject());
-		// }
-		// shapeslists.add(new LinkedList<Shape>(loaded));
-		// de.close();
-		// fis.close();
-		// } catch (IOException ex) {
-		// ex.printStackTrace();
-		// }
-		// }
-		//
+		 if (path.toLowerCase().contains(".xml")) {
+		 LinkedList<Shape> loaded = new LinkedList<Shape>();
+		 try {
+		 File file = new File(path);
+		 FileInputStream fis = new FileInputStream(file);
+		 XMLDecoder de = new XMLDecoder(fis);
+		
+		 for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+		 loaded.add((Shape) de.readObject());
+		 }
+		 shapeslists.add(new LinkedList<Shape>(loaded));
+		 de.close();
+		 fis.close();
+		 } catch (IOException ex) {
+		 ex.printStackTrace();
+		 }
+		 }
+		
 		// /*
 		// * else if (path.toLowerCase().contains(".json")) { JSONParser parser = new
 		// * JSONParser(); try (FileWriter file = new FileWriter(path)) { Object obj =
