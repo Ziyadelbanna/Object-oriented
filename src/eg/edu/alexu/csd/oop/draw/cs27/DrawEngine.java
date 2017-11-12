@@ -29,7 +29,7 @@ public class DrawEngine implements DrawingEngine {
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
-	public LinkedList<Class<? extends Shape>> list;
+	public List<Class<? extends Shape>> list;
 
 	public void refresh(Graphics canvas) {
 
@@ -156,7 +156,9 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public List<Class<? extends Shape>> getSupportedShapes() {
+		
 		list = new LinkedList<Class<? extends Shape>>();
+		
 		list.add(Line.class);
 		list.add(Square.class);
 		list.add(Ellipse.class);

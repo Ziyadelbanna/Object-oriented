@@ -18,12 +18,16 @@ public class Ellipse extends DrawShape {
 	private int x, y ,x2,y2= 0;
 	int px,py,pw,ph;
 
-	public Ellipse(int x , int y, int x2 , int y2) {
+	public Ellipse()
+	{
 		ellipse = new HashMap<String, Double>();
 		ellipse.put("width", diameter1);
 		ellipse.put("height", diameter2);
 		ellipse.put("x", x);
 		ellipse.put("y", y);
+	}
+	public Ellipse(int x , int y, int x2 , int y2) {
+		
 		this.x2=x2;
 		this.y2=y2;
 		 px = Math.min(x, x2);

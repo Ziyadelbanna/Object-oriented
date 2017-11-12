@@ -18,9 +18,13 @@ public class Circle extends DrawShape {
 	int px,py,pw,ph;
 	int x,y,x2,y2;
 
-	public Circle(int x , int y , int x2, int y2) {
+	public Circle ()
+	{
 		circle = new HashMap<String, Double>();
 		circle.put("width", radius);
+	}
+	public Circle(int x , int y , int x2, int y2) {
+		
 		 px = Math.min(x, x2);
 		 py = Math.min(y, y2);
 		 pw = Math.abs(x - x2);

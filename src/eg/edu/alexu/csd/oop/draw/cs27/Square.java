@@ -16,11 +16,15 @@ public class Square extends DrawShape {
 	Map square;
 	private int length,x,y,x2,y2,px,py,ph,pw ;
 
-	public Square( int x, int y , int x2, int y2) {
+	public Square()
+	{
 		square = new HashMap<String, Double>();
 		square.put("length", length);
 		square.put("x", x);
 		square.put("y", y);
+	}
+	public Square( int x, int y , int x2, int y2) {
+		
 		 px = Math.min(x, x2);
 		 py = Math.min(y, y2);
 		 pw = Math.abs(x - x2);

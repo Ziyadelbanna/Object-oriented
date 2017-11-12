@@ -13,7 +13,8 @@ public class Line extends DrawShape {
 	Graphics2D g2;
 	
 
-	public Line(int x,int y, int x2, int y2) {
+	public Line ()
+	{
 		line = new HashMap<String, Double>();
 		line.put("x1", 20.0);// (double) p1.x);
 		line.put("y1", 20.0);// (double) p2.y);
@@ -21,6 +22,9 @@ public class Line extends DrawShape {
 		line.put("y2", 300.0);// (double) p2.y);
 		line.put("length", length);
 		line.put("fontsize", 10.0);
+	}
+	public Line(int x,int y, int x2, int y2) {
+		
 		p1 = new Point (x,y);
 		p2 = new Point (x2,y2);
 	}

@@ -16,18 +16,23 @@ public class Rectangle extends DrawShape {
 	private int x, y;
 	int px, py, pw, ph;
 
+	public Rectangle ()
+	{
+		rectangle = new HashMap<String, Double>();
+		rectangle.put("length", ph);
+		rectangle.put("width", pw);
+	}
 	public Rectangle(int x, int y, int x2, int y2) {
 		px = Math.min(x, x2);
 		py = Math.min(y, y2);
 		pw = Math.abs(x - x2);
 		ph = Math.abs(y - y2);
-		rectangle = new HashMap<String, Double>();
-		rectangle.put("length", ph);
-		rectangle.put("width", pw);
+		
 		this.x = x;
 		this.y = y;
 
 	}
+
 	public void setColor(Color color) {
 		currentcolor = color;
 	}
@@ -46,10 +51,8 @@ public class Rectangle extends DrawShape {
 		g2 = (Graphics2D) canvas;
 		g2.setColor(getFillColor());
 		g2.fillRect(px, py, pw, ph);
-		g2.setColor(currentcolor);;
+		g2.setColor(currentcolor);
 		g2.drawRect(px, py, pw, ph);
-	
-
 	}
 
 	public Object clone() throws CloneNotSupportedException {

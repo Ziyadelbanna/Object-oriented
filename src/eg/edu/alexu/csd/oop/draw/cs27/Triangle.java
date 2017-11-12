@@ -17,7 +17,8 @@ public class Triangle extends DrawShape {
 	private double length, width = 0;
 	int x, y;
 
-	public Triangle(int x, int y, int x2, int y2) {
+	public Triangle()
+	{
 		triangle = new HashMap<String, Double>();
 		triangle.put("x1", x1);
 		triangle.put("x2", x2);
@@ -25,6 +26,9 @@ public class Triangle extends DrawShape {
 		triangle.put("y1", y1);
 		triangle.put("y2", y2);
 		triangle.put("y3", y3);
+	}
+	public Triangle(int x, int y, int x2, int y2) {
+		
 		px = Math.min(x, x2);
 		py = Math.min(y, y2);
 		pmx = Math.max(x, x2);
