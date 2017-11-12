@@ -118,6 +118,7 @@ public class DrawEngine implements DrawingEngine {
 			}
 			currentindex = shapeslists.size() - 1;
 		}
+
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			if (shapeslists.get(currentindex).get(i).equals(oldShape)) {
 
@@ -133,6 +134,8 @@ public class DrawEngine implements DrawingEngine {
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
 
+		redo = 0;
+		undo = 0;
 	}
 
 	public Shape[] getShapes() {
@@ -164,9 +167,10 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (currentindex > 0) {
+		if (currentindex >= 0) {
 			currentindex--;
 		}
+
 	}
 
 	public void redo() {
@@ -174,6 +178,7 @@ public class DrawEngine implements DrawingEngine {
 		if (currentindex < shapeslists.size() - 1) {
 			currentindex++;
 		}
+
 	}
 
 	public int size() {
@@ -223,7 +228,6 @@ public class DrawEngine implements DrawingEngine {
 				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 					loaded.add((Shape) de.readObject());
 				}
-				shapeslists = new LinkedList <LinkedList<Shape>>();
 				shapeslists.add(new LinkedList<Shape>(loaded));
 				de.close();
 				fis.close();
