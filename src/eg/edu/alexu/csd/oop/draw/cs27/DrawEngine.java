@@ -33,6 +33,7 @@ public class DrawEngine implements DrawingEngine {
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
 	boolean emptyshapes = false;
+	Shape[] getshapes;
 
 	public void refresh(Graphics canvas) {
 
@@ -49,21 +50,21 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
-		emptyshapes = false;
 		if (shape.equals(null)) {
 			throw null;
 		}
-		if (currentindex < shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1 && !emptyshapes) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
 				i--;
 			}
 			currentindex = shapeslists.size() - 1;
 		}
-		if (shapeslists.size() == 0) {
+		if (shapeslists.size() == 0 || emptyshapes) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
+			emptyshapes = false;
 
 		} else {
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
@@ -118,7 +119,6 @@ public class DrawEngine implements DrawingEngine {
 			}
 			currentindex = shapeslists.size() - 1;
 		}
-
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			if (shapeslists.get(currentindex).get(i).equals(oldShape)) {
 
@@ -134,23 +134,20 @@ public class DrawEngine implements DrawingEngine {
 		currentindex = shapeslists.size() - 1;
 		redoo = false;
 
-		redo = 0;
-		undo = 0;
 	}
 
 	public Shape[] getShapes() {
-		if (currentindex == -1) {
-			Shape[] shapes = new Shape[0];
-			return shapes;
+		if (emptyshapes) {
+			return getshapes;
 
 		}
 
-		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
+		getshapes = new Shape[shapeslists.get(currentindex).size()];
 
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			shapes[i] = shapeslists.get(currentindex).get(i);
+			getshapes[i] = shapeslists.get(currentindex).get(i);
 		}
-		return shapes;
+		return getshapes;
 	}
 
 	public List<Class<? extends Shape>> getSupportedShapes() {
@@ -167,14 +164,21 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (currentindex >= 0) {
+		if (currentindex > 0) {
 			currentindex--;
+		}
+		if (currentindex == 0) {
+			getshapes = new Shape[0];
+			emptyshapes = true;
 		}
 	}
 
 	public void redo() {
 
-		if (currentindex < shapeslists.size() - 1) {
+		if (emptyshapes) {
+			currentindex = 0;
+			emptyshapes = false;
+		} else if (currentindex < shapeslists.size() - 1) {
 			currentindex++;
 		}
 	}
@@ -226,7 +230,7 @@ public class DrawEngine implements DrawingEngine {
 				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 					loaded.add((Shape) de.readObject());
 				}
-				shapeslists = new LinkedList <LinkedList<Shape>>();
+				shapeslists = new LinkedList<LinkedList<Shape>>();
 				shapeslists.add(new LinkedList<Shape>(loaded));
 				de.close();
 				fis.close();
