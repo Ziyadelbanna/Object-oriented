@@ -36,6 +36,8 @@ public class DrawEngine implements DrawingEngine {
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
+	LinkedList<Class<? extends Shape>> list = new LinkedList<Class<? extends Shape>>();
+	
 
 	public void refresh(Graphics canvas) {
 
@@ -163,7 +165,14 @@ public class DrawEngine implements DrawingEngine {
 
 	public List<Class<? extends Shape>> getSupportedShapes() {
 
-		return null;
+		list.add(Rectangle.class);
+		list.add(Line.class);
+		list.add(Square.class);
+		list.add(Ellipse.class);
+		list.add(Triangle.class);
+		list.add(Circle.class);
+		
+		return list;
 	}
 
 	public void undo() {

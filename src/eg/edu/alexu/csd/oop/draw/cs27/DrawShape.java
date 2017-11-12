@@ -13,7 +13,7 @@ public class DrawShape implements Shape {
 	private double length, bs = 0.0;
 	private float fs = 10;
 	Color fillcolor;
-	Graphics2D g2;
+	protected static Graphics2D g2;
 
 	public void setPosition(Point position) {
 
@@ -50,6 +50,7 @@ public class DrawShape implements Shape {
 	}
 
 	public void draw(Graphics canvas) {
+		
 	}
 
 	public Object clone() throws CloneNotSupportedException {
