@@ -32,6 +32,7 @@ public class DrawEngine implements DrawingEngine {
 	boolean redoo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
+	boolean emptyshape = false;
 
 	public void refresh(Graphics canvas) {
 
@@ -143,8 +144,9 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
-		if (currentindex == -1) {
+		if (emptyshape) {
 			Shape[] shapes = new Shape[0];
+			emptyshape= false;
 			return shapes;
 
 		}
@@ -176,6 +178,10 @@ public class DrawEngine implements DrawingEngine {
 			currentindex--;
 			undo++;
 			redoo = true;
+		}
+		if (currentindex == 0)
+		{
+			emptyshape = true;
 		}
 
 	}
