@@ -167,7 +167,7 @@ public class DrawEngine implements DrawingEngine {
 		if (currentindex > 0) {
 			currentindex--;
 		}
-		if (currentindex == 0) {
+		else if (currentindex == 0) {
 			getshapes = new Shape[0];
 			emptyshapes = true;
 		}
