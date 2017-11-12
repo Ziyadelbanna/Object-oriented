@@ -32,7 +32,7 @@ public class DrawEngine implements DrawingEngine {
 	boolean redoo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
-	Shape[] getshapes;
+	boolean emptyshapes = false;
 
 	public void refresh(Graphics canvas) {
 
@@ -49,10 +49,10 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
+		emptyshapes = false;
 		if (shape.equals(null)) {
 			throw null;
 		}
-
 		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
@@ -63,6 +63,7 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() == 0) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
+			shapeslists.add(new LinkedList<Shape>(shapes));
 
 		} else {
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
@@ -72,6 +73,7 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
+
 		currentindex = shapeslists.size() - 1;
 
 	}
@@ -104,6 +106,7 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
+		emptyshapes = false;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
@@ -124,26 +127,27 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-
 		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
+		redoo = false;
 
 	}
 
 	public Shape[] getShapes() {
 		if (currentindex == -1) {
-			getshapes = new Shape[0];
-			return getshapes;
+			Shape[] shapes = new Shape[0];
+			return shapes;
+
 		}
 
-		getshapes = new Shape[shapeslists.get(currentindex).size()];
+		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
 
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			getshapes[i] = shapeslists.get(currentindex).get(i);
+			shapes[i] = shapeslists.get(currentindex).get(i);
 		}
-		return getshapes;
+		return shapes;
 	}
 
 	public List<Class<? extends Shape>> getSupportedShapes() {
@@ -160,7 +164,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 
-		if (currentindex >= 0) {
+		if (currentindex > 0) {
 			currentindex--;
 		}
 	}
@@ -219,7 +223,7 @@ public class DrawEngine implements DrawingEngine {
 				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 					loaded.add((Shape) de.readObject());
 				}
-				shapeslists = new LinkedList<LinkedList<Shape>>();
+				shapeslists = new LinkedList <LinkedList<Shape>>();
 				shapeslists.add(new LinkedList<Shape>(loaded));
 				de.close();
 				fis.close();
