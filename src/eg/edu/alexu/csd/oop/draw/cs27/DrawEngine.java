@@ -103,8 +103,6 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
-
-
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
@@ -141,11 +139,11 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
-		if (currentindex == -1) {
-			Shape[] shapes = new Shape[0];
-			return shapes;
-
-		}
+//		if (currentindex == -1) {
+//			Shape[] shapes = new Shape[0];
+//			return shapes;
+//
+//		}
 
 		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
 
@@ -158,7 +156,6 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> getSupportedShapes() {
 		
 		list = new LinkedList<Class<? extends Shape>>();
-		
 		list.add(Line.class);
 		list.add(Square.class);
 		list.add(Ellipse.class);
