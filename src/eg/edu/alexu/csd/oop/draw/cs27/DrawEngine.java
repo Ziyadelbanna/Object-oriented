@@ -178,7 +178,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 
-		if (currentindex < shapeslists.size() - 1 && currentindex >= 0) {
+		if (currentindex < shapeslists.size() - 1) {
 			currentindex++;
 		}
 		
