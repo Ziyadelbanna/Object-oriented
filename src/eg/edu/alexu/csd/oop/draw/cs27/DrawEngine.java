@@ -73,9 +73,7 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
-		redoo = false;
-		redo = 0;
-		undo = 0;
+
 		currentindex = shapeslists.size() - 1;
 
 	}
@@ -105,10 +103,7 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
-		redoo = false;
 
-		redo = 0;
-		undo = 0;
 
 	}
 
@@ -178,21 +173,12 @@ public class DrawEngine implements DrawingEngine {
 		if (currentindex >= 0) {
 			currentindex--;
 		}
-//		else if (currentindex == 0)
-//		{
-//			emptyshapes = true;
-//		}
 
 	}
 
 	public void redo() {
 
-//		if (currentindex == 0 && emptyshapes)
-//		{
-//			currentindex =0;
-//			emptyshapes = false;
-//		}
-		if (currentindex < shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1 && currentindex >= 0) {
 			currentindex++;
 		}
 		
