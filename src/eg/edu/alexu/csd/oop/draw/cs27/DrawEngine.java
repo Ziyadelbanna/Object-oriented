@@ -29,7 +29,7 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
 	protected int currentindex = 0;
-	private int slcount =0;
+	private int slcount = 0;
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
@@ -186,19 +186,19 @@ public class DrawEngine implements DrawingEngine {
 	public void save(String path) {
 
 		if (path.toLowerCase().contains(".xml")) {
-//			try {
-//				File file = new File(path);
-//				FileOutputStream fos = new FileOutputStream(file);
-//				XMLEncoder en = new XMLEncoder(fos);
-//
-//				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-//					en.writeObject(shapeslists.get(currentindex).get(i));
-//				}
-//				en.close();
-//				fos.close();
-//			} catch (IOException ex) {
-//				ex.printStackTrace();
-//			}
+			// try {
+			// File file = new File(path);
+			// FileOutputStream fos = new FileOutputStream(file);
+			// XMLEncoder en = new XMLEncoder(fos);
+			//
+			// for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			// en.writeObject(shapeslists.get(currentindex).get(i));
+			// }
+			// en.close();
+			// fos.close();
+			// } catch (IOException ex) {
+			// ex.printStackTrace();
+			// }
 
 			try {
 				// opens file
@@ -234,20 +234,20 @@ public class DrawEngine implements DrawingEngine {
 	public void load(String path) {
 		if (path.toLowerCase().contains(".xml")) {
 			LinkedList<Shape> loaded = new LinkedList<Shape>();
-//			try {
-//				File file = new File(path);
-//				FileInputStream fis = new FileInputStream(file);
-//				XMLDecoder de = new XMLDecoder(fis);
-//
-//				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-//					loaded.add((Shape) de.readObject());
-//				}
-//				shapeslists.add(new LinkedList<Shape>(loaded));
-//				de.close();
-//				fis.close();
-//			} catch (IOException ex) {
-//				ex.printStackTrace();
-//			}
+			// try {
+			// File file = new File(path);
+			// FileInputStream fis = new FileInputStream(file);
+			// XMLDecoder de = new XMLDecoder(fis);
+			//
+			// for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			// loaded.add((Shape) de.readObject());
+			// }
+			// shapeslists.add(new LinkedList<Shape>(loaded));
+			// de.close();
+			// fis.close();
+			// } catch (IOException ex) {
+			// ex.printStackTrace();
+			// }
 			try {
 				// Open file .
 				FileInputStream loadfile = new FileInputStream("SavedObj.sav");
@@ -258,14 +258,13 @@ public class DrawEngine implements DrawingEngine {
 				for (int i = 0; i < slcount; i++) {
 					loaded.add((Shape) load.readObject());
 				}
-				shapeslists = new LinkedList<LinkedList<Shape>>() ;
-				shapeslists.add(new LinkedList <Shape> (loaded));
+				shapeslists = new LinkedList<LinkedList<Shape>>();
+				shapeslists.add(new LinkedList<Shape>(loaded));
 
 				load.close();
 			} catch (Exception exc) {
 				exc.printStackTrace(); // If there was an error, print the info.
 			}
-			
 
 		}
 
