@@ -30,11 +30,10 @@ public class DrawEngine implements DrawingEngine {
 	Graphics2D g2;
 	protected int currentindex = 0;
 	private int slcount = 0;
-	private int undo1, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
-	boolean undo = false;
+	boolean current = false;
 
 	public void refresh(Graphics canvas) {
 
@@ -50,10 +49,17 @@ public class DrawEngine implements DrawingEngine {
 		}
 	}
 
-	
 	public void addShape(Shape shape) {
 		if (shape.equals(null)) {
 			throw null;
+		}
+		if (currentindex == -1) {
+			current = true;
+			shapeslists = new LinkedList<LinkedList<Shape>>();
+			shapes = new LinkedList<Shape>();
+			shapes.add(shape);
+			shapeslists.add(shapes);
+			currentindex = 0;
 		}
 
 		if (currentindex < shapeslists.size() - 1) {
@@ -66,19 +72,21 @@ public class DrawEngine implements DrawingEngine {
 		}
 
 		if (shapeslists.size() == 0) {
-			shapeslists = new LinkedList<LinkedList<Shape>>();
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists.add(shapes);
 
 		} else {
 
-			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
-			shapes.add(shape);
-			shapeslists.add(new LinkedList<Shape>(shapes));
+			if (current) {
+				shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
+				shapes.add(shape);
+				shapeslists.add(new LinkedList<Shape>(shapes));
+				current = false;
+			}
 
 		}
-		if (shapeslists.size() > 22) {
+		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
