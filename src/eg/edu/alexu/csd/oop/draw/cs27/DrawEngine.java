@@ -33,9 +33,10 @@ public class DrawEngine implements DrawingEngine {
 	boolean redoo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
-	boolean current = false;
+	boolean current = true;
 
 	public void refresh(Graphics canvas) {
+		
 
 		if (shapeslists.size() == 0 || shapeslists.get(currentindex).size() == 0) {
 			throw null;
@@ -49,17 +50,19 @@ public class DrawEngine implements DrawingEngine {
 		}
 	}
 
+	
 	public void addShape(Shape shape) {
 		if (shape.equals(null)) {
 			throw null;
 		}
-		if (currentindex == -1) {
-			current = true;
+		if (currentindex == -1)
+		{
+			current = false;
 			shapeslists = new LinkedList<LinkedList<Shape>>();
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists.add(shapes);
-			currentindex = 0;
+			currentindex =0;
 		}
 
 		if (currentindex < shapeslists.size() - 1) {
@@ -77,12 +80,12 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(shapes);
 
 		} else {
-
-			if (current) {
-				shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
-				shapes.add(shape);
-				shapeslists.add(new LinkedList<Shape>(shapes));
-				current = false;
+			if (!current)
+			{
+			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
+			shapes.add(shape);
+			shapeslists.add(new LinkedList<Shape>(shapes));
+			current = false;
 			}
 
 		}
