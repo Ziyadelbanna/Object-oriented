@@ -77,7 +77,7 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 
 		}
-		if (shapeslists.size() > 21) {
+		if (shapeslists.size() > 22) {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
