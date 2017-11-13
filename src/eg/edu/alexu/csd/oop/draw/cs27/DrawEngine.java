@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,6 +29,7 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
 	protected int currentindex = 0;
+	private int slcount =0;
 	private int undo, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
@@ -62,6 +64,7 @@ public class DrawEngine implements DrawingEngine {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists.add(shapes);
+
 		} else {
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
 			shapes.add(shape);
@@ -71,7 +74,6 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
-
 	}
 
 	public void removeShape(Shape shape) {
@@ -151,12 +153,14 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> getSupportedShapes() {
 
 		list = new LinkedList<Class<? extends Shape>>();
+
 		list.add(Line.class);
 		list.add(Square.class);
 		list.add(Ellipse.class);
 		list.add(Triangle.class);
 		list.add(Rectangle.class);
 		list.add(Circle.class);
+
 		return list;
 	}
 
@@ -182,18 +186,34 @@ public class DrawEngine implements DrawingEngine {
 	public void save(String path) {
 
 		if (path.toLowerCase().contains(".xml")) {
+//			try {
+//				File file = new File(path);
+//				FileOutputStream fos = new FileOutputStream(file);
+//				XMLEncoder en = new XMLEncoder(fos);
+//
+//				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+//					en.writeObject(shapeslists.get(currentindex).get(i));
+//				}
+//				en.close();
+//				fos.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
+
 			try {
-				File file = new File(path);
-				FileOutputStream fos = new FileOutputStream(file);
-				XMLEncoder en = new XMLEncoder(fos);
+				// opens file
+				FileOutputStream saveFile = new FileOutputStream("SavedObj.sav");
+
+				// Create an ObjectOutputStream to put objects into save file.
+				ObjectOutputStream save = new ObjectOutputStream(saveFile);
 
 				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-					en.writeObject(shapeslists.get(currentindex).get(i));
+					save.writeObject(shapeslists.get(currentindex).get(i));
+					slcount++;
 				}
-				en.close();
-				fos.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
+				save.close();
+			} catch (Exception exc) {
+				exc.printStackTrace(); // If there was an error, print the info.
 			}
 		}
 		/*
@@ -214,20 +234,39 @@ public class DrawEngine implements DrawingEngine {
 	public void load(String path) {
 		if (path.toLowerCase().contains(".xml")) {
 			LinkedList<Shape> loaded = new LinkedList<Shape>();
+//			try {
+//				File file = new File(path);
+//				FileInputStream fis = new FileInputStream(file);
+//				XMLDecoder de = new XMLDecoder(fis);
+//
+//				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+//					loaded.add((Shape) de.readObject());
+//				}
+//				shapeslists.add(new LinkedList<Shape>(loaded));
+//				de.close();
+//				fis.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
 			try {
-				File file = new File(path);
-				FileInputStream fis = new FileInputStream(file);
-				XMLDecoder de = new XMLDecoder(fis);
+				// Open file .
+				FileInputStream loadfile = new FileInputStream("SavedObj.sav");
 
-				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-					loaded.add((Shape) de.readObject());
+				// Create an ObjectInputStream to get objects from load file.
+				ObjectInputStream load = new ObjectInputStream(loadfile);
+
+				for (int i = 0; i < slcount; i++) {
+					loaded.add((Shape) load.readObject());
 				}
-				shapeslists.add(new LinkedList<Shape>(loaded));
-				de.close();
-				fis.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
+				shapeslists = new LinkedList<LinkedList<Shape>>() ;
+				shapeslists.add(new LinkedList <Shape> (loaded));
+
+				load.close();
+			} catch (Exception exc) {
+				exc.printStackTrace(); // If there was an error, print the info.
 			}
+			
+
 		}
 
 		// /*
