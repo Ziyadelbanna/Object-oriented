@@ -30,10 +30,11 @@ public class DrawEngine implements DrawingEngine {
 	Graphics2D g2;
 	protected int currentindex = 0;
 	private int slcount = 0;
-	private int undo, redo = 0;
+	private int undo1, redo = 0;
 	boolean redoo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
+	boolean undo = false;
 
 	public void refresh(Graphics canvas) {
 
@@ -132,7 +133,7 @@ public class DrawEngine implements DrawingEngine {
 		redoo = false;
 
 		redo = 0;
-		undo = 0;
+		undo1 = 0;
 	}
 
 	public Shape[] getShapes() {
@@ -168,12 +169,13 @@ public class DrawEngine implements DrawingEngine {
 
 		if (currentindex >= 0) {
 			currentindex--;
+			undo = true;
 		}
 	}
 
 	public void redo() {
 
-		if (currentindex < shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1 && undo) {
 			currentindex++;
 		}
 
@@ -251,13 +253,13 @@ public class DrawEngine implements DrawingEngine {
 			try {
 				// Open file .
 				FileInputStream loadfile = new FileInputStream("SavedObj.sav");
-
 				// Create an ObjectInputStream to get objects from load file.
 				ObjectInputStream load = new ObjectInputStream(loadfile);
 
 				for (int i = 0; i < slcount; i++) {
 					loaded.add((Shape) load.readObject());
 				}
+
 				shapeslists = new LinkedList<LinkedList<Shape>>();
 				shapeslists.add(new LinkedList<Shape>(loaded));
 
