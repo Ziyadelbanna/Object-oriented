@@ -32,7 +32,6 @@ public class DrawEngine implements DrawingEngine {
 	boolean redoo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
-	boolean emptyshapes = false;
 
 	public void refresh(Graphics canvas) {
 
@@ -49,7 +48,6 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
-		emptyshapes = false;
 		if (shape.equals(null)) {
 			throw null;
 		}
@@ -64,7 +62,6 @@ public class DrawEngine implements DrawingEngine {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists.add(shapes);
-
 		} else {
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
 			shapes.add(shape);
@@ -73,7 +70,6 @@ public class DrawEngine implements DrawingEngine {
 		if (shapeslists.size() > 20) {
 			shapeslists.remove(0);
 		}
-
 		currentindex = shapeslists.size() - 1;
 
 	}
@@ -106,7 +102,6 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
-		emptyshapes = false;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
@@ -170,7 +165,6 @@ public class DrawEngine implements DrawingEngine {
 		if (currentindex >= 0) {
 			currentindex--;
 		}
-
 	}
 
 	public void redo() {
