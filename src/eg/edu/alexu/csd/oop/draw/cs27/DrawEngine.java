@@ -38,7 +38,6 @@ public class DrawEngine implements DrawingEngine {
 	boolean empty = false;
 
 	public void refresh(Graphics canvas) {
-		
 
 		if (shapeslists.size() == 0 || shapeslists.get(currentindex).size() == 0) {
 			throw null;
@@ -52,7 +51,6 @@ public class DrawEngine implements DrawingEngine {
 		}
 	}
 
-	
 	public void addShape(Shape shape) {
 		if (shape.equals(null)) {
 			throw null;
@@ -88,6 +86,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void removeShape(Shape shape) {
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
+		empty = false;
 		if (shape.equals(null)) {
 			throw null;
 		}
@@ -115,6 +114,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void updateShape(Shape oldShape, Shape newShape) {
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
+		empty = false;
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
 		}
@@ -143,10 +143,10 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public Shape[] getShapes() {
+
 		if (empty) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
-
 		}
 
 		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
@@ -172,26 +172,21 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void undo() {
+
 		if (currentindex > 0) {
 			currentindex--;
-		}
-		
-		else if (currentindex == 0 ) {
+		} else if (currentindex == 0) {
 			empty = true;
 		}
 	}
 
 	public void redo() {
-
-		if (empty)
-		{
+		if (empty) {
 			currentindex = 0;
 			empty = false;
-		}
-		else if (currentindex < shapeslists.size() - 1) {
+		} else if (currentindex < shapeslists.size() - 1) {
 			currentindex++;
 		}
-
 	}
 
 	public int size() {
