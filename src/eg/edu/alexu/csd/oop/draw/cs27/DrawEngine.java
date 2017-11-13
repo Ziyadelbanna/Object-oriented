@@ -170,7 +170,7 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void undo() {
-		if (currentindex >= 0) {
+		if (currentindex > 0) {
 			currentindex--;
 		}
 
