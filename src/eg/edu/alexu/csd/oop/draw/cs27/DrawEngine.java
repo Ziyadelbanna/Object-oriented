@@ -26,7 +26,7 @@ import eg.edu.alexu.csd.oop.draw.Shape;
 public class DrawEngine implements DrawingEngine {
 
 	LinkedList<Shape> shapes;
-	LinkedList<LinkedList<Shape>> shapeslists ;
+	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
 	protected int currentindex = 0;
 	private int slcount = 0;
@@ -65,8 +65,8 @@ public class DrawEngine implements DrawingEngine {
 			currentindex = shapeslists.size() - 1;
 		}
 
-		if (shapeslists.size() == 0) {			
-			
+		if (shapeslists.size() == 0) {
+			shapeslists = new LinkedList<LinkedList<Shape>>();
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
 			shapeslists.add(shapes);
@@ -78,7 +78,7 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 
 		}
-		if (shapeslists.size() > 21) {
+		if (shapeslists.size() > 22) {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
