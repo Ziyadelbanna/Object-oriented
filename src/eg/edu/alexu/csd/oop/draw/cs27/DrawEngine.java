@@ -144,17 +144,19 @@ public class DrawEngine implements DrawingEngine {
 
 	public Shape[] getShapes() {
 
-		if (empty) {
+		if (!empty) {
+
+			Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
+
+			for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+				shapes[i] = shapeslists.get(currentindex).get(i);
+			}
+			return shapes;
+		} else {
 			Shape[] shapes = new Shape[0];
 			return shapes;
 		}
 
-		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
-
-		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			shapes[i] = shapeslists.get(currentindex).get(i);
-		}
-		return shapes;
 	}
 
 	public List<Class<? extends Shape>> getSupportedShapes() {
