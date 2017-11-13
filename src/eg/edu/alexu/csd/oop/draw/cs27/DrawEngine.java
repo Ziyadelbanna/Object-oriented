@@ -70,7 +70,7 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			if (empty)
 			{
-			shapeslists.add(currentindex,shapes);
+			shapeslists.add(0,shapes);
 			}
 			else 
 			shapeslists.add(shapes);
