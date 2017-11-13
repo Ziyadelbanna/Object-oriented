@@ -53,17 +53,22 @@ public class DrawEngine implements DrawingEngine {
 		if (shape.equals(null)) {
 			throw null;
 		}
-		if (currentindex < shapeslists.size() - 1) {
+		if (currentindex < shapeslists.size() - 1 && currentindex != -1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
 				i--;
 			}
 			currentindex = shapeslists.size() - 1;
 		}
-		if (shapeslists.size() == 0) {
+		if (shapeslists.size() == 0 || currentindex == -1) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
-			shapeslists.add(new LinkedList<Shape>(shapes));
+			if (shapeslists.size()==0)
+			{shapeslists.add(new LinkedList<Shape>(shapes));}
+			else if (currentindex == -1){
+				currentindex = 0;
+				shapeslists.add(0, new LinkedList<Shape>(shapes));
+			}
 
 		} else {
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
