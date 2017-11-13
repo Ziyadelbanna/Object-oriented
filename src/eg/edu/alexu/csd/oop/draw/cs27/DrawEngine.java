@@ -65,11 +65,16 @@ public class DrawEngine implements DrawingEngine {
 			currentindex = shapeslists.size() - 1;
 		}
 
-		if (shapeslists.size() == 0) {
+		if (shapeslists.size() == 0 || empty) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
+			if (empty)
+			{
+			shapeslists.add(currentindex,shapes);
+			}
+			else 
 			shapeslists.add(shapes);
-
+			
 		} else {
 
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
@@ -77,7 +82,7 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 
 		}
-		if (shapeslists.size() > 22) {
+		if (shapeslists.size() > 21) {
 			shapeslists.remove(0);
 		}
 		currentindex = shapeslists.size() - 1;
@@ -174,7 +179,6 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void undo() {
-
 		if (currentindex > 0) {
 			currentindex--;
 		} else if (currentindex == 0) {
@@ -211,22 +215,6 @@ public class DrawEngine implements DrawingEngine {
 			// } catch (IOException ex) {
 			// ex.printStackTrace();
 			// }
-
-			try {
-				// opens file
-				FileOutputStream saveFile = new FileOutputStream("SavedObj.sav");
-
-				// Create an ObjectOutputStream to put objects into save file.
-				ObjectOutputStream save = new ObjectOutputStream(saveFile);
-
-				for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-					save.writeObject(shapeslists.get(currentindex).get(i));
-					slcount++;
-				}
-				save.close();
-			} catch (Exception exc) {
-				exc.printStackTrace(); // If there was an error, print the info.
-			}
 		}
 		/*
 		 * else if (path.toLowerCase().contains(".json")) {
@@ -260,23 +248,6 @@ public class DrawEngine implements DrawingEngine {
 			// } catch (IOException ex) {
 			// ex.printStackTrace();
 			// }
-			try {
-				// Open file .
-				FileInputStream loadfile = new FileInputStream("SavedObj.sav");
-				// Create an ObjectInputStream to get objects from load file.
-				ObjectInputStream load = new ObjectInputStream(loadfile);
-
-				for (int i = 0; i < slcount; i++) {
-					loaded.add((Shape) load.readObject());
-				}
-
-				shapeslists = new LinkedList<LinkedList<Shape>>();
-				shapeslists.add(new LinkedList<Shape>(loaded));
-
-				load.close();
-			} catch (Exception exc) {
-				exc.printStackTrace(); // If there was an error, print the info.
-			}
 
 		}
 
