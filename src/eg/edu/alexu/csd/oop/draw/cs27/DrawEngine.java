@@ -162,7 +162,7 @@ public class DrawEngine implements DrawingEngine {
 			}
 			return shapes;
 		} else {
-			Shape[] shapes = new Shape[0];
+			Shape[] shapes = new Shape[1];
 			return shapes;
 		}
 
