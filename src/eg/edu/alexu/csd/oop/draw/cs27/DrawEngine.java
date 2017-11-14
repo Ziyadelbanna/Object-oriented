@@ -30,11 +30,12 @@ public class DrawEngine implements DrawingEngine {
 	Graphics2D g2;
 	protected int currentindex = 0;
 	private int slcount = 0;
-	boolean redoo = false;
+	boolean redo = false;
 	boolean found = false;
 	public List<Class<? extends Shape>> list;
 	boolean undo = false;
 	boolean empty = false;
+	private int undoo,redoo =0;
 
 	public void refresh(Graphics canvas) {
 
@@ -51,23 +52,22 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
+		undoo = 0 ;
+		redoo = 0 ;
 		if (shape.equals(null)) {
 			throw null;
 		}
+
 		if (currentindex < shapeslists.size() - 1 || empty) {
-			if (empty) {
-				for (int i = currentindex; i < shapeslists.size(); i++) {
-					shapeslists.remove(i);
-					i--;
-				}
-			} else {
-				for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-					shapeslists.remove(i);
-					i--;
-				}
+			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
+				shapeslists.remove(i);
+				System.out.println(currentindex + ",");
+				System.out.println(shapeslists.size());
+				i--;
 			}
 			currentindex = shapeslists.size() - 1;
 		}
+
 		if (shapeslists.size() == 0 || empty) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
@@ -80,14 +80,16 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
-		if (shapeslists.size() > 5) {
-			shapeslists.removeFirst();
-		}
+//		if (shapeslists.size() > 21) {
+//			shapeslists.removeFirst();
+//		}
 		currentindex = shapeslists.size() - 1;
 		empty = false;
 	}
 
 	public void removeShape(Shape shape) {
+		undoo = 0 ;
+		redoo = 0;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		empty = false;
 		if (shape.equals(null)) {
@@ -108,14 +110,15 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-		if (shapeslists.size() > 5) {
-			shapeslists.removeFirst();
-		}
+//		if (shapeslists.size() > 21) {
+//			shapeslists.removeFirst();
+//		}
 		currentindex = shapeslists.size() - 1;
-
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
+		undoo = 0 ;
+		redoo = 0;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		empty = false;
 		if (oldShape.equals(null) || newShape.equals(null)) {
@@ -138,11 +141,10 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-		if (shapeslists.size() > 5) {
-			shapeslists.removeFirst();
-		}
+//		if (shapeslists.size() > 21) {
+//			shapeslists.removeFirst();
+//		}
 		currentindex = shapeslists.size() - 1;
-
 	}
 
 	public Shape[] getShapes() {
@@ -173,19 +175,30 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void undo() {
+		undo = true;
+		if (undoo <20) {	
 		if (currentindex > 0) {
 			currentindex--;
+			undoo++;
 		} else if (currentindex == 0) {
+			undoo++;
 			empty = true;
+		}
 		}
 	}
 
 	public void redo() {
+		if (redoo<20)
+		{
 		if (currentindex < shapeslists.size() - 1 && !empty) {
+			undo = false;
+			redoo++;
 			currentindex++;
 		} else if (empty) {
 			currentindex = 0;
 			empty = false;
+			redoo++;
+		}
 		}
 	}
 
