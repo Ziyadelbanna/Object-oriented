@@ -35,7 +35,7 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> list;
 	boolean undo = false;
 	boolean empty = false;
-	private int undoo,redoo =0;
+	private int undoo, redoo = 0;
 
 	public void refresh(Graphics canvas) {
 
@@ -52,43 +52,35 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
-		undoo = 0 ;
-		redoo = 0 ;
+		undoo = 0;
+		redoo = 0;
 		if (shape.equals(null)) {
 			throw null;
 		}
 
-		if (currentindex < shapeslists.size() - 1 || empty) {
+		if (currentindex < shapeslists.size() - 1) {
 			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
 				shapeslists.remove(i);
-				System.out.println(currentindex + ",");
-				System.out.println(shapeslists.size());
 				i--;
 			}
 			currentindex = shapeslists.size() - 1;
 		}
 
-		if (shapeslists.size() == 0 || empty) {
+		if (shapeslists.size() == 0) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
-			if (empty) {
-				shapeslists.add(0, shapes);
-			} else
-				shapeslists.add(shapes);
+			shapeslists.add(shapes);
 		} else {
 			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
-//		if (shapeslists.size() > 21) {
-//			shapeslists.removeFirst();
-//		}
 		currentindex = shapeslists.size() - 1;
 		empty = false;
 	}
 
 	public void removeShape(Shape shape) {
-		undoo = 0 ;
+		undoo = 0;
 		redoo = 0;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		empty = false;
@@ -110,17 +102,13 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-//		if (shapeslists.size() > 21) {
-//			shapeslists.removeFirst();
-//		}
 		currentindex = shapeslists.size() - 1;
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
-		undoo = 0 ;
+		undoo = 0;
 		redoo = 0;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
-		empty = false;
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
 		}
@@ -141,23 +129,23 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-//		if (shapeslists.size() > 21) {
-//			shapeslists.removeFirst();
-//		}
 		currentindex = shapeslists.size() - 1;
+		empty = false;
 	}
 
 	public Shape[] getShapes() {
-		if (!empty) {
-			Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
-			for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-				shapes[i] = shapeslists.get(currentindex).get(i);
-			}
-			return shapes;
-		} else {
+
+		if (empty) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
 		}
+
+		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
+		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
+			shapes[i] = shapeslists.get(currentindex).get(i);
+		}
+		return shapes;
+
 	}
 
 	public List<Class<? extends Shape>> getSupportedShapes() {
@@ -176,34 +164,39 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 		undo = true;
-		if (undoo <20) {	
-		if (currentindex > 0) {
-			currentindex--;
-			undoo++;
-		} else if (currentindex == 0) {
-			undoo++;
-			empty = true;
-		}
+		if (undoo < 20) {
+			if (currentindex > 0) {
+				currentindex--;
+				undoo++;
+			}
+			else if (currentindex == 0)
+			{
+				empty = true;
+				currentindex = 0;
+			}
 		}
 	}
 
 	public void redo() {
-		if (redoo<20)
-		{
-		if (currentindex < shapeslists.size() - 1 && !empty) {
-			undo = false;
-			redoo++;
-			currentindex++;
-		} else if (empty) {
-			currentindex = 0;
-			empty = false;
-			redoo++;
-		}
+		if (redoo < 20) {
+			
+			if (currentindex < shapeslists.size() - 1 && !empty) {
+				undo = false;
+				redoo++;
+				currentindex++;
+				undoo = 0;
+			}
+			else if (empty){
+				undoo = 0;
+				redoo++;
+				currentindex = 0;
+				empty = false;
+			}
 		}
 	}
 
 	public int size() {
-		return shapeslists.size();
+		return shapeslists.get(currentindex).size();
 	}
 
 	public int current() {
