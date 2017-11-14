@@ -142,7 +142,7 @@ public class DrawEngine implements DrawingEngine {
 
 		if ( test1 > 20 && test21 )
 		{
-			test1 = 0;
+			//test1 = 0;
 			Shape[] shapes = new Shape[test1];
 			test21 = false;
 			return shapes;
