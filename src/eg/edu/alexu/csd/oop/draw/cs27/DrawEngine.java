@@ -180,10 +180,10 @@ public class DrawEngine implements DrawingEngine {
 		if (undo) {
 			if (redoo < undoo) {
 				redoo++;
+				undoo--;
 				if (currentindex < shapeslists.size() - 1 && !empty) {
 					currentindex++;
 				} else if (empty) {
-					redoo++;
 					currentindex = 0;
 					empty = false;
 				}
