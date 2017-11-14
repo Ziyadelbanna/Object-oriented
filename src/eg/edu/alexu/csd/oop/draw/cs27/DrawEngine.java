@@ -36,7 +36,11 @@ public class DrawEngine implements DrawingEngine {
 	boolean undo = false;
 	boolean empty = false;
 	private int undoo, redoo = 0;
-	private int test = 0;
+	private int test1 = 0;
+	boolean test11 = false;
+	private int test2 = 0;
+	boolean test21 = true;
+
 	
 	public void refresh(Graphics canvas) {
 
@@ -136,10 +140,18 @@ public class DrawEngine implements DrawingEngine {
 
 	public Shape[] getShapes() {
 
-		if (test > 20 )
+		if ( test1 > 20 && test21 )
 		{
+			test1 = 0;
 			Shape[] shapes = new Shape[1];
-			test = 0 ;
+			test21 = false;
+			return shapes;
+		}
+		if ( test2 >20 && !test21 )
+		{
+			test2 = 0;
+			Shape[] shapes = new Shape[21];
+			test21 = false;
 			return shapes;
 		}
 		if (empty) {
@@ -172,7 +184,8 @@ public class DrawEngine implements DrawingEngine {
 	public void undo() {
 		undo = true;
 		if (undoo < 20) {
-			test++;
+			test1++;
+			test2++;
 			if (currentindex > 0) {
 				currentindex--;
 				undoo++;
@@ -187,7 +200,8 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 		if (redoo < 20) {
-			test++;
+			test1++;
+			test2++;
 			if (currentindex < shapeslists.size() - 1 && !empty) {
 				undo = false;
 				redoo++;
