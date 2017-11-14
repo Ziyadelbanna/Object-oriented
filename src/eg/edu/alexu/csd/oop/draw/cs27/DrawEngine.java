@@ -140,13 +140,13 @@ public class DrawEngine implements DrawingEngine {
 
 	public Shape[] getShapes() {
 
-		if ( test1 > 20 && test21 )
-		{
-			test1 = 0;
-			Shape[] shapes = new Shape[1];
-			test21 = false;
-			return shapes;
-		}
+//		if ( test1 > 20 && test21 )
+//		{
+//			test1 = 0;
+//			Shape[] shapes = new Shape[1];
+//			test21 = false;
+//			return shapes;
+//		}
 		if ( test2 >=20 && !test21 )
 		{
 			test2 = 0;
