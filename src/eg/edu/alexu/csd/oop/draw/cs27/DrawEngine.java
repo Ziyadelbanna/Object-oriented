@@ -31,15 +31,10 @@ public class DrawEngine implements DrawingEngine {
 	protected int currentindex = 0;
 	private int slcount = 0;
 	boolean redo = false;
-	boolean found = false;
 	public List<Class<? extends Shape>> list;
 	boolean undo = false;
 	boolean empty = false;
 	private int undoo, redoo = 0;
-	private int test1 = 0;
-	boolean test11 = false;
-	private int test2 = 0;
-	boolean test21 = true;
 
 	public void refresh(Graphics canvas) {
 
@@ -58,6 +53,7 @@ public class DrawEngine implements DrawingEngine {
 	public void addShape(Shape shape) {
 		undoo = 0;
 		redoo = 0;
+		undo = false;
 		if (shape.equals(null)) {
 			throw null;
 		}
@@ -86,6 +82,7 @@ public class DrawEngine implements DrawingEngine {
 	public void removeShape(Shape shape) {
 		undoo = 0;
 		redoo = 0;
+		undo = false;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		empty = false;
 		if (shape.equals(null)) {
@@ -111,7 +108,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void updateShape(Shape oldShape, Shape newShape) {
 		undoo = 0;
-		redoo = 0;
+		undo = false;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
@@ -139,19 +136,6 @@ public class DrawEngine implements DrawingEngine {
 
 	public Shape[] getShapes() {
 
-		if (test1 > 20) {
-			test1 = 21;
-			Shape[] shapes = new Shape[test1];
-			test1 = 0;
-			return shapes;
-		}
-		// if ( test2 >=20 && !test21 )
-		// {
-		// test2 = 0;
-		// Shape[] shapes = new Shape[21];
-		// test21 = false;
-		// return shapes;
-		// }
 		if (empty) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
@@ -168,46 +152,46 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> getSupportedShapes() {
 
 		list = new LinkedList<Class<? extends Shape>>();
+
 		list.add(Line.class);
 		list.add(Square.class);
 		list.add(Ellipse.class);
 		list.add(Triangle.class);
 		list.add(Rectangle.class);
 		list.add(Circle.class);
-
 		return list;
 	}
 
 	public void undo() {
-		undo = true;
-		if (undoo < 20 && redoo < 20) {
-			test1++;
-			test2++;
+		if (undoo < 20) {
+			undo = true;
 			if (currentindex > 0) {
 				currentindex--;
 				undoo++;
 			} else if (currentindex == 0) {
 				empty = true;
 				currentindex = 0;
+				undoo++;
 			}
 		}
 	}
 
 	public void redo() {
-		if (redoo < 20 && undoo < 20) {
-			test1++;
-			test2++;
-			if (currentindex < shapeslists.size() - 1 && !empty) {
+		if (undo) {
+			if (redoo < undoo) {
+				redoo++;
+				if (currentindex < shapeslists.size() - 1 && !empty) {
+					currentindex++;
+				} else if (empty) {
+					redoo++;
+					currentindex = 0;
+					empty = false;
+				}
+			} else {
 				undo = false;
-				redoo++;
-				currentindex++;
-			} else if (empty) {
-				redoo++;
-
-				currentindex = 0;
-				empty = false;
 			}
 		}
+
 	}
 
 	public int size() {
@@ -221,13 +205,13 @@ public class DrawEngine implements DrawingEngine {
 	public void save(String path) {
 
 		if (path.toLowerCase().contains(".xml")) {
-
 		}
 	}
 
 	public void load(String path) {
 		if (path.toLowerCase().contains(".xml")) {
 			LinkedList<Shape> loaded = new LinkedList<Shape>();
+
 		}
 	}
 
