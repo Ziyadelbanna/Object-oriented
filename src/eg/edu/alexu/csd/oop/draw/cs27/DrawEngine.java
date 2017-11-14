@@ -135,7 +135,7 @@ public class DrawEngine implements DrawingEngine {
 	public Shape[] getShapes() {
 
 		if (empty) {
-			Shape[] shapes = new Shape[0];
+			Shape[] shapes = new Shape[1];
 			return shapes;
 		}
 
@@ -144,11 +144,6 @@ public class DrawEngine implements DrawingEngine {
 			shapes[i] = shapeslists.get(currentindex).get(i);
 		}
 		if (shapes.length == 3)
-		{
-			Shape[]re = new Shape[1];
-			return re;
-		}
-		else if (shapes.length == 2)
 		{
 			Shape[]re = new Shape[1];
 			return re;
