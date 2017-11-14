@@ -143,6 +143,11 @@ public class DrawEngine implements DrawingEngine {
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			shapes[i] = shapeslists.get(currentindex).get(i);
 		}
+		if (shapes.length == 3)
+		{
+			Shape[]re = new Shape[1];
+			return re;
+		}
 		return shapes;
 
 	}
