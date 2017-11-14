@@ -80,9 +80,9 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
-//		if (shapeslists.size() > 10) {
-//			shapeslists.removeFirst();
-//		}
+		if (shapeslists.size() > 20) {
+			shapeslists.removeFirst();
+		}
 		currentindex = shapeslists.size() - 1;
 		empty = false;
 	}
@@ -108,9 +108,9 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-//		if (shapeslists.size() > 10) {
-//			shapeslists.removeFirst();
-//		}
+		if (shapeslists.size() > 20) {
+			shapeslists.removeFirst();
+		}
 		currentindex = shapeslists.size() - 1;
 
 	}
@@ -138,9 +138,9 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-//		if (shapeslists.size() > 10) {
-//			shapeslists.removeFirst();
-//		}
+		if (shapeslists.size() > 20) {
+			shapeslists.removeFirst();
+		}
 		currentindex = shapeslists.size() - 1;
 
 	}
@@ -190,7 +190,11 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public int size() {
-		return shapeslists.get(currentindex).size();
+		return shapeslists.size();
+	}
+
+	public int current() {
+		return currentindex;
 	}
 
 	public void save(String path) {
