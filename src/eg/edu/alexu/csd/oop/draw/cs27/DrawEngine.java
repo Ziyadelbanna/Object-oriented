@@ -135,18 +135,13 @@ public class DrawEngine implements DrawingEngine {
 	public Shape[] getShapes() {
 
 		if (empty) {
-			Shape[] shapes = new Shape[1];
+			Shape[] shapes = new Shape[0];
 			return shapes;
 		}
 
 		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			shapes[i] = shapeslists.get(currentindex).get(i);
-		}
-		if (shapes.length == 3)
-		{
-			Shape[]re = new Shape[1];
-			return re;
 		}
 		return shapes;
 
@@ -181,7 +176,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void redo() {
 		if (redo) {
-			if (undoo!= 0) {
+			if (undoo != 0) {
 				if (currentindex < shapeslists.size() - 1 && !empty) {
 					currentindex++;
 					undoo--;
