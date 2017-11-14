@@ -139,6 +139,7 @@ public class DrawEngine implements DrawingEngine {
 		if (test > 20 )
 		{
 			Shape[] shapes = new Shape[1];
+			test = 0 ;
 			return shapes;
 		}
 		if (empty) {
