@@ -148,6 +148,11 @@ public class DrawEngine implements DrawingEngine {
 			Shape[]re = new Shape[1];
 			return re;
 		}
+		else if (shapes.length == 2)
+		{
+			Shape[]re = new Shape[1];
+			return re;
+		}
 		return shapes;
 
 	}
