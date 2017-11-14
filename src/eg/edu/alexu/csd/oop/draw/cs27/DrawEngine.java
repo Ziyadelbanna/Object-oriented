@@ -168,9 +168,11 @@ public class DrawEngine implements DrawingEngine {
 			if (currentindex > 0) {
 				currentindex--;
 				undoo++;
+				redoo = 0 ;
 			}
 			else if (currentindex == 0)
 			{
+				redoo = 0 ;
 				empty = true;
 				currentindex = 0;
 			}
@@ -182,13 +184,13 @@ public class DrawEngine implements DrawingEngine {
 			
 			if (currentindex < shapeslists.size() - 1 && !empty) {
 				undo = false;
+				undoo = 0;
 				redoo++;
 				currentindex++;
-				undoo = 0;
 			}
 			else if (empty){
-				undoo = 0;
 				redoo++;
+				undoo = 0;
 				currentindex = 0;
 				empty = false;
 			}
