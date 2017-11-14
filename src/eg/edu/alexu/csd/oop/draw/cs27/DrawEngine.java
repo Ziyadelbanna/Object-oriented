@@ -52,6 +52,7 @@ public class DrawEngine implements DrawingEngine {
 
 	public void addShape(Shape shape) {
 		undoo = 0;
+		empty = false;
 		redo = false;
 		if (shape.equals(null)) {
 			throw null;
@@ -75,7 +76,6 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
 		currentindex = shapeslists.size() - 1;
-		empty = false;
 	}
 
 	public void removeShape(Shape shape) {
@@ -107,6 +107,7 @@ public class DrawEngine implements DrawingEngine {
 	public void updateShape(Shape oldShape, Shape newShape) {
 		undoo = 0;
 		redo = false;
+		empty = false;
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
@@ -129,7 +130,6 @@ public class DrawEngine implements DrawingEngine {
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
-		empty = false;
 	}
 
 	public Shape[] getShapes() {
