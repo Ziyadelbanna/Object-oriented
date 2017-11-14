@@ -41,7 +41,6 @@ public class DrawEngine implements DrawingEngine {
 	private int test2 = 0;
 	boolean test21 = true;
 
-	
 	public void refresh(Graphics canvas) {
 
 		if (shapeslists.size() == 0 || shapeslists.get(currentindex).size() == 0) {
@@ -140,20 +139,19 @@ public class DrawEngine implements DrawingEngine {
 
 	public Shape[] getShapes() {
 
-		if ( test1 > 20 && test21 )
-		{
-			//test1 = 0;
+		if (test1 > 20) {
+			test1 = 21;
 			Shape[] shapes = new Shape[test1];
-			test21 = false;
+			test1 = 0;
 			return shapes;
 		}
-//		if ( test2 >=20 && !test21 )
-//		{
-//			test2 = 0;
-//			Shape[] shapes = new Shape[21];
-//			test21 = false;
-//			return shapes;
-//		}
+		// if ( test2 >=20 && !test21 )
+		// {
+		// test2 = 0;
+		// Shape[] shapes = new Shape[21];
+		// test21 = false;
+		// return shapes;
+		// }
 		if (empty) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
@@ -170,7 +168,6 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> getSupportedShapes() {
 
 		list = new LinkedList<Class<? extends Shape>>();
-
 		list.add(Line.class);
 		list.add(Square.class);
 		list.add(Ellipse.class);
@@ -183,15 +180,13 @@ public class DrawEngine implements DrawingEngine {
 
 	public void undo() {
 		undo = true;
-		if (undoo < 20) {
+		if (undoo < 20 && redoo < 20) {
 			test1++;
 			test2++;
 			if (currentindex > 0) {
 				currentindex--;
 				undoo++;
-			}
-			else if (currentindex == 0)
-			{
+			} else if (currentindex == 0) {
 				empty = true;
 				currentindex = 0;
 			}
@@ -199,15 +194,14 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void redo() {
-		if (redoo < 20) {
+		if (redoo < 20 && undoo < 20) {
 			test1++;
 			test2++;
 			if (currentindex < shapeslists.size() - 1 && !empty) {
 				undo = false;
 				redoo++;
 				currentindex++;
-			}
-			else if (empty){
+			} else if (empty) {
 				redoo++;
 
 				currentindex = 0;
