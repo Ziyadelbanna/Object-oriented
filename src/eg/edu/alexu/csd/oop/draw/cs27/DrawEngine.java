@@ -33,10 +33,11 @@ public class DrawEngine implements DrawingEngine {
 	private int slcount = 0;
 	boolean redo = false;
 	public List<Class<? extends Shape>> list;
-	boolean undo = false;
+	boolean undolimit = false;
 	boolean empty = true;
 	private int undoo, redoo = 0;
 	LinkedList<LinkedList<Shape>> l = new LinkedList<LinkedList<Shape>>();
+	LinkedList<LinkedList<Shape>> r = new LinkedList<LinkedList<Shape>>();
 
 	public void refresh(Graphics canvas) {
 
@@ -53,18 +54,9 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
-
 		if (shape.equals(null)) {
 			throw null;
 		}
-
-		// if (l.size()>0) {
-		// for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-		// shapeslists.remove(i);
-		// i--;
-		// }
-		// // currentindex = shapeslists.size() - 1;
-		// }
 		if (shapeslists.size() == 0) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
@@ -74,7 +66,15 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
-		l = new LinkedList<LinkedList<Shape>>();
+		if (r.size() > 0) {
+		 r = new LinkedList<LinkedList<Shape>>();
+		}
+		if (l.size() < 20) {
+			l.add(new LinkedList<Shape>(shapes));
+		} else {
+			l.removeFirst();
+			l.add(new LinkedList(shapes));
+		}
 		empty = false;
 		currentindex = shapeslists.size() - 1;
 	}
@@ -85,14 +85,6 @@ public class DrawEngine implements DrawingEngine {
 		if (shape.equals(null)) {
 			throw null;
 		}
-
-		// if (currentindex < shapeslists.size() - 1) {
-		// for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-		// shapeslists.remove(i);
-		// i--;
-		// }
-		// // currentindex = shapeslists.size() - 1;
-		// }
 		for (int i = 0; i < shapeslists.getLast().size(); i++) {
 			if (shapeslists.getLast().get(i).equals(shape)) {
 				continue;
@@ -101,24 +93,25 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
-		l = new LinkedList<LinkedList<Shape>>();
+		if (r.size() > 0) {
+			 r = new LinkedList<LinkedList<Shape>>();
+
+		}
+		if (l.size() < 20) {
+			l.add(new LinkedList<Shape>(newshapes));
+		} else {
+			l.removeFirst();
+			l.add(new LinkedList<Shape>(newshapes));
+		}
 		empty = false;
 		currentindex = shapeslists.size() - 1;
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
-
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
 		}
-		// if (currentindex < shapeslists.size() - 1) {
-		// for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-		// shapeslists.remove(i);
-		// i--;
-		// }
-		// // currentindex = shapeslists.size() - 1;
-		// }
 		for (int i = 0; i < shapeslists.getLast().size(); i++) {
 			if (shapeslists.getLast().get(i).equals(oldShape)) {
 				newshapes.add(newShape);
@@ -126,14 +119,24 @@ public class DrawEngine implements DrawingEngine {
 				newshapes.add(shapeslists.getLast().get(i));
 			}
 		}
-		l = new LinkedList<LinkedList<Shape>>();
 		shapeslists.add(new LinkedList<Shape>(newshapes));
+
+		if (r.size() > 0) {
+			 r = new LinkedList<LinkedList<Shape>>();
+
+		}
+		if (l.size() < 20) {
+			l.add(new LinkedList<Shape>(newshapes));
+		} else {
+			l.removeFirst();
+			l.add(new LinkedList<Shape>(newshapes));
+		}
 		empty = false;
 		currentindex = shapeslists.size() - 1;
 	}
 
 	public Shape[] getShapes() {
-		if (empty) {
+		if (shapeslists.size() == 0) {
 			Shape[] shapes = new Shape[0];
 			return shapes;
 		}
@@ -147,40 +150,35 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> getSupportedShapes() {
 
 		list = new LinkedList<Class<? extends Shape>>();
-		
+
 		list.add(Line.class);
 		list.add(Square.class);
 		list.add(Ellipse.class);
 		list.add(Triangle.class);
 		list.add(Rectangle.class);
-		list.add(Circle.class);	
+		list.add(Circle.class);
 		return list;
 	}
+
 	public void undo() {
-		if (currentindex == 0 && undoo <20) {
-			empty = true;
-		}
-		if (l.size() < 20) {
-			l.add(new LinkedList(shapeslists.remove(currentindex)));
-			currentindex--;undoo++;
-		} else {
-			l.removeFirst();
-			l.add(new LinkedList(shapeslists.remove(currentindex)));
-			currentindex--; undoo++;
+		if (l.size() > 0) {
+			shapeslists.removeLast();
+			r.add(new LinkedList<Shape>(l.removeLast()));
+			currentindex--;
 		}
 	}
 
 	public void redo() {
-
-		if (l.size() > 0) {
-			shapeslists.add(new LinkedList(l.removeLast()));
-			currentindex++;
+		if (r.size() > 0) {
+			LinkedList<Shape> n = new LinkedList<Shape>();
+			n = r.removeLast();
+			shapeslists.add(new LinkedList<Shape>(n));
+			l.add((new LinkedList<Shape>(n)));
 		}
-
 	}
 
 	public int size() {
-		return shapeslists.get(currentindex).size();
+		return shapeslists.getLast().size();
 	}
 
 	public int current() {
