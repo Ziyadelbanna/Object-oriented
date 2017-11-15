@@ -161,7 +161,7 @@ public class DrawEngine implements DrawingEngine {
 		if (currentindex == 0) {
 			empty = true;
 		}
-		if (l.size() < 20) {
+		if (l.size() < 21) {
 			l.add(new LinkedList(shapeslists.remove(currentindex)));
 			currentindex--;
 		} else {
