@@ -70,7 +70,7 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(shapes);
 		} else {
-			shapes = new LinkedList<Shape>(shapeslists.get(currentindex));
+			shapes = new LinkedList<Shape>(shapeslists.getLast());
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
@@ -93,11 +93,11 @@ public class DrawEngine implements DrawingEngine {
 		// }
 		// // currentindex = shapeslists.size() - 1;
 		// }
-		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			if (shapeslists.get(currentindex).get(i).equals(shape)) {
+		for (int i = 0; i < shapeslists.getLast().size(); i++) {
+			if (shapeslists.getLast().get(i).equals(shape)) {
 				continue;
 			} else {
-				newshapes.add(shapeslists.get(currentindex).get(i));
+				newshapes.add(shapeslists.getLast().get(i));
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
@@ -119,11 +119,11 @@ public class DrawEngine implements DrawingEngine {
 		// }
 		// // currentindex = shapeslists.size() - 1;
 		// }
-		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			if (shapeslists.get(currentindex).get(i).equals(oldShape)) {
+		for (int i = 0; i < shapeslists.getLast().size(); i++) {
+			if (shapeslists.getLast().get(i).equals(oldShape)) {
 				newshapes.add(newShape);
 			} else {
-				newshapes.add(shapeslists.get(currentindex).get(i));
+				newshapes.add(shapeslists.getLast().get(i));
 			}
 		}
 		l = new LinkedList<LinkedList<Shape>>();
@@ -137,9 +137,9 @@ public class DrawEngine implements DrawingEngine {
 			Shape[] shapes = new Shape[0];
 			return shapes;
 		}
-		Shape[] shapes = new Shape[shapeslists.get(currentindex).size()];
-		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
-			shapes[i] = shapeslists.get(currentindex).get(i);
+		Shape[] shapes = new Shape[shapeslists.getLast().size()];
+		for (int i = 0; i < shapeslists.getLast().size(); i++) {
+			shapes[i] = shapeslists.getLast().get(i);
 		}
 		return shapes;
 	}
@@ -153,21 +153,20 @@ public class DrawEngine implements DrawingEngine {
 		list.add(Ellipse.class);
 		list.add(Triangle.class);
 		list.add(Rectangle.class);
-		list.add(Circle.class);
-		
+		list.add(Circle.class);	
 		return list;
 	}
 	public void undo() {
-		if (currentindex == 0) {
+		if (currentindex == 0 && undoo <20) {
 			empty = true;
 		}
-		if (l.size() < 21) {
+		if (l.size() < 20) {
 			l.add(new LinkedList(shapeslists.remove(currentindex)));
-			currentindex--;
+			currentindex--;undoo++;
 		} else {
 			l.removeFirst();
 			l.add(new LinkedList(shapeslists.remove(currentindex)));
-			currentindex--;
+			currentindex--; undoo++;
 		}
 	}
 
