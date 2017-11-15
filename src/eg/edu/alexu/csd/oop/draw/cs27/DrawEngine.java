@@ -39,10 +39,6 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<LinkedList<Shape>> r = new LinkedList<LinkedList<Shape>>();
 
 	public void refresh(Graphics canvas) {
-
-//		if (shapeslists.size() == 0 || shapeslists.get(currentindex).size() == 0) {
-//			throw null;
-//		}
 		try {
 			for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 				shapeslists.get(currentindex).get(i).draw(canvas);
@@ -74,8 +70,6 @@ public class DrawEngine implements DrawingEngine {
 			l.removeFirst();
 			l.add(new LinkedList(shapes));
 		}
-		empty = false;
-		currentindex = shapeslists.size() - 1;
 	}
 
 	public void removeShape(Shape shape) {
@@ -102,8 +96,6 @@ public class DrawEngine implements DrawingEngine {
 			l.removeFirst();
 			l.add(new LinkedList<Shape>(newshapes));
 		}
-		empty = false;
-		currentindex = shapeslists.size() - 1;
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
@@ -130,8 +122,6 @@ public class DrawEngine implements DrawingEngine {
 			l.removeFirst();
 			l.add(new LinkedList<Shape>(newshapes));
 		}
-		empty = false;
-		currentindex = shapeslists.size() - 1;
 	}
 
 	public Shape[] getShapes() {
@@ -175,15 +165,6 @@ public class DrawEngine implements DrawingEngine {
 			l.add((new LinkedList<Shape>(n)));
 		}
 	}
-
-	public int size() {
-		return shapeslists.getLast().size();
-	}
-
-	public int current() {
-		return currentindex;
-	}
-
 	public void save(String path) {
 
 		if (path.toLowerCase().contains(".xml")) {
