@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import eg.edu.alexu.csd.oop.draw.DrawingEngine;
 import eg.edu.alexu.csd.oop.draw.Shape;
@@ -35,6 +36,7 @@ public class DrawEngine implements DrawingEngine {
 	boolean undo = false;
 	boolean empty = true;
 	private int undoo, redoo = 0;
+	LinkedList<LinkedList<Shape>> l = new LinkedList<LinkedList<Shape>>();
 
 	public void refresh(Graphics canvas) {
 
@@ -51,21 +53,18 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void addShape(Shape shape) {
-		undoo = 0;
-		empty = false;
-		redo = false;
+
 		if (shape.equals(null)) {
 			throw null;
 		}
 
-		if (currentindex < shapeslists.size() - 1) {
-			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-				shapeslists.remove(i);
-				i--;
-			}
-			// currentindex = shapeslists.size() - 1;
-		}
-
+		// if (l.size()>0) {
+		// for (int i = currentindex + 1; i < shapeslists.size(); i++) {
+		// shapeslists.remove(i);
+		// i--;
+		// }
+		// // currentindex = shapeslists.size() - 1;
+		// }
 		if (shapeslists.size() == 0) {
 			shapes = new LinkedList<Shape>();
 			shapes.add(shape);
@@ -75,25 +74,24 @@ public class DrawEngine implements DrawingEngine {
 			shapes.add(shape);
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
+		l = new LinkedList<LinkedList<Shape>>();
 		currentindex = shapeslists.size() - 1;
 	}
 
 	public void removeShape(Shape shape) {
-		undoo = 0;
-		redo = false;
+
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (shape.equals(null)) {
 			throw null;
 		}
 
-		if (currentindex < shapeslists.size() - 1) {
-			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-				shapeslists.remove(i);
-				i--;
-			}
-			// currentindex = shapeslists.size() - 1;
-		}
-
+		// if (currentindex < shapeslists.size() - 1) {
+		// for (int i = currentindex + 1; i < shapeslists.size(); i++) {
+		// shapeslists.remove(i);
+		// i--;
+		// }
+		// // currentindex = shapeslists.size() - 1;
+		// }
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			if (shapeslists.get(currentindex).get(i).equals(shape)) {
 				continue;
@@ -102,32 +100,31 @@ public class DrawEngine implements DrawingEngine {
 			}
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
+		l = new LinkedList<LinkedList<Shape>>();
 		currentindex = shapeslists.size() - 1;
 	}
 
 	public void updateShape(Shape oldShape, Shape newShape) {
-		undoo = 0;
-		redo = false;
+
 		LinkedList<Shape> newshapes = new LinkedList<Shape>();
 		if (oldShape.equals(null) || newShape.equals(null)) {
 			throw null;
 		}
-		if (currentindex < shapeslists.size() - 1) {
-			for (int i = currentindex + 1; i < shapeslists.size(); i++) {
-				shapeslists.remove(i);
-				i--;
-			}
-			// currentindex = shapeslists.size() - 1;
-		}
-
+		// if (currentindex < shapeslists.size() - 1) {
+		// for (int i = currentindex + 1; i < shapeslists.size(); i++) {
+		// shapeslists.remove(i);
+		// i--;
+		// }
+		// // currentindex = shapeslists.size() - 1;
+		// }
 		for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 			if (shapeslists.get(currentindex).get(i).equals(oldShape)) {
-
 				newshapes.add(newShape);
 			} else {
 				newshapes.add(shapeslists.get(currentindex).get(i));
 			}
 		}
+		l = new LinkedList<LinkedList<Shape>>();
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		currentindex = shapeslists.size() - 1;
 	}
@@ -158,35 +155,27 @@ public class DrawEngine implements DrawingEngine {
 	}
 
 	public void undo() {
-		if (undoo < 22) {
-			redo = true;
-			if (currentindex > 0) {
-				currentindex--;
-				undoo++;
-			} else if (currentindex == 0) {
-				empty = true;
-				currentindex = 0;
-				undoo++;
-			}
+		if (currentindex == 0) {
+			empty = true;
 		}
+		if (l.size() < 20) {
+			l.add(new LinkedList(shapeslists.remove(currentindex)));
+			currentindex--;
+		} else {
+			l.removeFirst();
+			l.add(new LinkedList(shapeslists.remove(currentindex)));
+			currentindex--;
+		}
+
 	}
 
 	public void redo() {
-		if (redo) {
-			if (undoo != 0) {
-				if (!empty) {
-					currentindex++;
-					undoo--;
-				} else if (empty) {
-					currentindex = 0;
-					empty = false;
-					undoo--;
-				}
-			} else {
-				redo = false;
-				undoo = 0;
-			}
+
+		if (l.size() > 0) {
+			shapeslists.add(new LinkedList(l.removeLast()));
+			currentindex++;
 		}
+
 	}
 
 	public int size() {
