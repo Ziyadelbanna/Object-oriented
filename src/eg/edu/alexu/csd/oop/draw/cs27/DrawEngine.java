@@ -35,15 +35,14 @@ public class DrawEngine implements DrawingEngine {
 	public List<Class<? extends Shape>> list;
 	boolean undolimit = false;
 	boolean empty = true;
-	private int undoo, redoo = 0;
 	LinkedList<LinkedList<Shape>> l = new LinkedList<LinkedList<Shape>>();
 	LinkedList<LinkedList<Shape>> r = new LinkedList<LinkedList<Shape>>();
 
 	public void refresh(Graphics canvas) {
 
-		if (shapeslists.size() == 0 || shapeslists.get(currentindex).size() == 0) {
-			throw null;
-		}
+//		if (shapeslists.size() == 0 || shapeslists.get(currentindex).size() == 0) {
+//			throw null;
+//		}
 		try {
 			for (int i = 0; i < shapeslists.get(currentindex).size(); i++) {
 				shapeslists.get(currentindex).get(i).draw(canvas);
@@ -67,7 +66,7 @@ public class DrawEngine implements DrawingEngine {
 			shapeslists.add(new LinkedList<Shape>(shapes));
 		}
 		if (r.size() > 0) {
-		 r = new LinkedList<LinkedList<Shape>>();
+			r = new LinkedList<LinkedList<Shape>>();
 		}
 		if (l.size() < 20) {
 			l.add(new LinkedList<Shape>(shapes));
@@ -94,7 +93,7 @@ public class DrawEngine implements DrawingEngine {
 		}
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 		if (r.size() > 0) {
-			 r = new LinkedList<LinkedList<Shape>>();
+			r = new LinkedList<LinkedList<Shape>>();
 
 		}
 		if (l.size() < 20) {
@@ -122,7 +121,7 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>(newshapes));
 
 		if (r.size() > 0) {
-			 r = new LinkedList<LinkedList<Shape>>();
+			r = new LinkedList<LinkedList<Shape>>();
 
 		}
 		if (l.size() < 20) {
