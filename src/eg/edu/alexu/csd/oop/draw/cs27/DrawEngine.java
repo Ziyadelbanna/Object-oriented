@@ -31,10 +31,7 @@ public class DrawEngine implements DrawingEngine {
 	Graphics2D g2;
 	protected int currentindex = 0;
 	private int slcount = 0;
-	boolean redo = false;
 	public List<Class<? extends Shape>> list;
-	boolean undolimit = false;
-	boolean empty = true;
 	LinkedList<LinkedList<Shape>> l = new LinkedList<LinkedList<Shape>>();
 	LinkedList<LinkedList<Shape>> r = new LinkedList<LinkedList<Shape>>();
 
@@ -165,6 +162,7 @@ public class DrawEngine implements DrawingEngine {
 			l.add((new LinkedList<Shape>(n)));
 		}
 	}
+
 	public void save(String path) {
 
 		if (path.toLowerCase().contains(".xml")) {
