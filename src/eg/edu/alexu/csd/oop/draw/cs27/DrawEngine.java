@@ -179,22 +179,11 @@ public class DrawEngine implements DrawingEngine {
 			l.add((new LinkedList<Shape>(n)));
 		}
 	}
-	public int getsize()
-	{
-		return shapeslists.getLast().size();
-	}
 
 	public void save(String path) {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		File fos = new File(path);
-//		Shapes shapes = new Shapes();
-//		shapes.setshapes(new LinkedList<DrawShape>());
-//		for (Shape s : shapeslists.getLast())
-//		{
-//			if (s != null);
-//			{shapes.getshapes().add((DrawShape)s);}
-//		}
 		try {
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.newDocument();
@@ -212,33 +201,16 @@ public class DrawEngine implements DrawingEngine {
 			StreamResult res = new StreamResult(fos);
 
 			t.transform(src, res);
-//			JAXBContext jaxbContext = JAXBContext.newInstance(Shapes.class);
-//		    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//		 
-//		    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//		     
-//		    //Marshal the shapes list in console
-//		    jaxbMarshaller.marshal(shapes, System.out);
-//		     
-//		    //Marshal the employees list in file
-//		    jaxbMarshaller.marshal(shapes, fos);
 
-		}catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		catch (ParserConfigurationException e) {
-//			e.printStackTrace();
-//		} catch (TransformerException tfe) {
-//			tfe.printStackTrace();
-//		}
-
 	}
 
 	public void load(String path) {
 
 		shapeslists = new LinkedList<LinkedList<Shape>>();
-		shapeslists.add(new LinkedList <Shape>());
+		shapeslists.add(new LinkedList<Shape>());
 		l = new LinkedList<LinkedList<Shape>>();
 		r = new LinkedList<LinkedList<Shape>>();
 
@@ -248,7 +220,7 @@ public class DrawEngine implements DrawingEngine {
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			Shapes s = (Shapes) unmarshaller.unmarshal(f);
 			for (DrawShape c : s.getshapes()) {
-				shapeslists.getLast().add((Shape)c);
+				shapeslists.getLast().add((Shape) c);
 			}
 
 		} catch (Exception e) {
