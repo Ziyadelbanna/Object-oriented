@@ -188,40 +188,40 @@ public class DrawEngine implements DrawingEngine {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		File fos = new File(path);
-		Shapes shapes = new Shapes();
-		shapes.setshapes(new LinkedList<DrawShape>());
-		for (Shape s : shapeslists.getLast())
-		{
-			if (s != null);
-			{shapes.getshapes().add((DrawShape)s);}
-		}
+//		Shapes shapes = new Shapes();
+//		shapes.setshapes(new LinkedList<DrawShape>());
+//		for (Shape s : shapeslists.getLast())
+//		{
+//			if (s != null);
+//			{shapes.getshapes().add((DrawShape)s);}
+//		}
 		try {
-//			DocumentBuilder db = dbf.newDocumentBuilder();
-//			Document doc = db.newDocument();
-//			Element root = doc.createElement("CurrentShapes");
-//			doc.appendChild(root);
-//			for (Shape s : shapeslists.getLast()) {
-//				Element shape = doc.createElement("shape");
-//				shape.appendChild(doc.createTextNode(String.valueOf(s)));
-//				root.appendChild(shape);
-//			}
-//			TransformerFactory tf = TransformerFactory.newInstance();
-//			Transformer t = tf.newTransformer();
-//			DOMSource src = new DOMSource(doc);
-//
-//			StreamResult res = new StreamResult(fos);
-//
-//			t.transform(src, res);
-			JAXBContext jaxbContext = JAXBContext.newInstance(Shapes.class);
-		    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-		 
-		    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		     
-		    //Marshal the shapes list in console
-		    jaxbMarshaller.marshal(shapes, System.out);
-		     
-		    //Marshal the employees list in file
-		    jaxbMarshaller.marshal(shapes, fos);
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document doc = db.newDocument();
+			Element root = doc.createElement("CurrentShapes");
+			doc.appendChild(root);
+			for (Shape s : shapeslists.getLast()) {
+				Element shape = doc.createElement("shape");
+				shape.appendChild(doc.createTextNode(String.valueOf(s)));
+				root.appendChild(shape);
+			}
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer t = tf.newTransformer();
+			DOMSource src = new DOMSource(doc);
+
+			StreamResult res = new StreamResult(fos);
+
+			t.transform(src, res);
+//			JAXBContext jaxbContext = JAXBContext.newInstance(Shapes.class);
+//		    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//		 
+//		    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//		     
+//		    //Marshal the shapes list in console
+//		    jaxbMarshaller.marshal(shapes, System.out);
+//		     
+//		    //Marshal the employees list in file
+//		    jaxbMarshaller.marshal(shapes, fos);
 
 		}catch (Exception e)
 		{
