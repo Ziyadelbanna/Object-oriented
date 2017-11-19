@@ -192,7 +192,8 @@ public class DrawEngine implements DrawingEngine {
 		shapes.setshapes(new LinkedList<DrawShape>());
 		for (Shape s : shapeslists.getLast())
 		{
-			shapes.getshapes().add((DrawShape)s);
+			if (s != null);
+			{shapes.getshapes().add((DrawShape)s);}
 		}
 		try {
 //			DocumentBuilder db = dbf.newDocumentBuilder();
