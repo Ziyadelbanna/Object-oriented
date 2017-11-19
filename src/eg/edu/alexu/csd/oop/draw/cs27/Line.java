@@ -3,7 +3,10 @@ package eg.edu.alexu.csd.oop.draw.cs27;
 import java.awt.*;
 import java.util.*;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import eg.edu.alexu.csd.oop.draw.Shape;
+@XmlRootElement(name = "shape")
 
 public class Line extends DrawShape {
 

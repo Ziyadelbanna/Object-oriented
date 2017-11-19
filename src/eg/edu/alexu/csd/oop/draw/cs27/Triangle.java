@@ -8,7 +8,10 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import eg.edu.alexu.csd.oop.draw.Shape;
+@XmlRootElement(name = "shape")
 
 public class Triangle extends DrawShape {
 	Graphics2D g2;

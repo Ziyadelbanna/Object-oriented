@@ -2,12 +2,18 @@ package eg.edu.alexu.csd.oop.draw.cs27;
 
 import java.awt.*;
 import java.util.*;
+import javax.xml.bind.annotation.XmlAccessType;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import eg.edu.alexu.csd.oop.draw.Shape;
 
-public class DrawShape implements Shape {
+@XmlRootElement(name = "shape")
+@XmlAccessorType (XmlAccessType.FIELD)
 
+public class DrawShape implements Shape {
+	
 	protected Point p;
 	Color currentcolor;
 	private double length, bs = 0.0;
