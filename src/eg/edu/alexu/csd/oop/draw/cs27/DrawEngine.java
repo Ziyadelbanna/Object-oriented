@@ -1,42 +1,20 @@
 package eg.edu.alexu.csd.oop.draw.cs27;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
 import eg.edu.alexu.csd.oop.draw.DrawingEngine;
 import eg.edu.alexu.csd.oop.draw.Shape;
 
@@ -46,7 +24,6 @@ public class DrawEngine implements DrawingEngine {
 	LinkedList<LinkedList<Shape>> shapeslists = new LinkedList<LinkedList<Shape>>();
 	Graphics2D g2;
 	protected int currentindex = 0;
-	private int slcount = 0;
 	public List<Class<? extends Shape>> list;
 	LinkedList<LinkedList<Shape>> l = new LinkedList<LinkedList<Shape>>();
 	LinkedList<LinkedList<Shape>> r = new LinkedList<LinkedList<Shape>>();
@@ -193,11 +170,11 @@ public class DrawEngine implements DrawingEngine {
 				Element shape = doc.createElement("shape");
 				shape.appendChild(doc.createTextNode(String.valueOf(s)));
 				root.appendChild(shape);
+				
 			}
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
 			DOMSource src = new DOMSource(doc);
-
 			StreamResult res = new StreamResult(fos);
 
 			t.transform(src, res);
@@ -213,8 +190,8 @@ public class DrawEngine implements DrawingEngine {
 		shapeslists.add(new LinkedList<Shape>());
 		l = new LinkedList<LinkedList<Shape>>();
 		r = new LinkedList<LinkedList<Shape>>();
-
 		File f = new File(path);
+
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Shapes.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -222,6 +199,7 @@ public class DrawEngine implements DrawingEngine {
 			for (DrawShape c : s.getshapes()) {
 				shapeslists.getLast().add((Shape) c);
 			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
