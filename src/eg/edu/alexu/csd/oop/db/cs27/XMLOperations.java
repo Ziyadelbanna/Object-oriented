@@ -2,7 +2,7 @@ package eg.edu.alexu.csd.oop.db.cs27;
 
 import java.util.LinkedList;
 
-public abstract class XMLOper {
+public abstract class XMLOperations {
 	public abstract void operate(String dbPath, String tablePath, LinkedList<String> keys, LinkedList<String> values);
 
 	public abstract LinkedList<String[]> operate(String dbPath, String tablePath, LinkedList<String> seekColumn,

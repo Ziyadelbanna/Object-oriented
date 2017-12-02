@@ -9,14 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.xml.stream.XMLStreamException;
-import eg.edu.alexu.csd.oop.db.cs27.parse.ParserFilter;
+import eg.edu.alexu.csd.oop.db.cs27.parse.ParserFiltrer;
 
 public class MyStat implements Statement {
 	// public MyDatabase DB = new MyDatabase();
 	private ArrayList<String> Batches = new ArrayList<>();
 	// MyDriver conPath= new MyDriver();
 	ConnectionImp con;
-	ParserFilter filter = new ParserFilter();
+	ParserFiltrer filter = new ParserFiltrer();
 	// Adapter adp = new Adapter();
 	int QueryTimeout;
 	boolean closed = false;

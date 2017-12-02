@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Update implements Parser {
+public class update implements Parser {
 
 	private Map<String, Object> collected = new HashMap<String, Object>();
 	private String regex = new String();
@@ -15,7 +15,7 @@ public class Update implements Parser {
 	public ArrayList<String> condition = new ArrayList<String>();
 	String TableName = new String();
 
-	public Update() {
+	public update() {
 		collected.put("Operation", "Update");
 	}
 

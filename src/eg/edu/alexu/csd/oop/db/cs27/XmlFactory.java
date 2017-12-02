@@ -11,11 +11,11 @@ public class XmlFactory {
 		} else if (name.equals("Update")) {
 			return new DomUpdater();
 		} else if (name.equals("Delete")) {
-			return new DeleteDOM();
+			return new DomDeleter();
 		} else if (name.equals("CreateTable")) {
-			return new xmlWriter();
+			return new xmlWritrer();
 		} else if (name.equals("CreateDB")) {
-			return new CreateDatabase();
+			return new DBCreator();
 		} else if (name.equals("DropDB")) {
 			return new DropDataBase();
 		} else if (name.equals("DropTable")) {
