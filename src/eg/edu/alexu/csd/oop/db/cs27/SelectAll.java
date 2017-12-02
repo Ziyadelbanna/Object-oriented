@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import java.util.Map;
 
+import eg.edu.alexu.csd.oop.db.ISelect;
+
 
 
 public class SelectAll implements ISelect {

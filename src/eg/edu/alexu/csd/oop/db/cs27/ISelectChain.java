@@ -1,6 +1,6 @@
 package eg.edu.alexu.csd.oop.db.cs27;
 
-
+import eg.edu.alexu.csd.oop.db.ISelect;
 
 public class ISelectChain {
 

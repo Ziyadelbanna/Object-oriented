@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 
+import eg.edu.alexu.csd.oop.db.Expression;
+
 
 
 public class DeleteConditioned implements Expression{

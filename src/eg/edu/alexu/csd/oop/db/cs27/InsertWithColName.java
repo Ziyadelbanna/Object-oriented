@@ -10,6 +10,8 @@ import java.util.LinkedHashMap;
 
 import java.util.Map;
 
+import eg.edu.alexu.csd.oop.db.Expression;
+
 
 
 public class InsertWithColName implements Expression {

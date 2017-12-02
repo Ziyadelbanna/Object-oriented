@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 
+import eg.edu.alexu.csd.oop.db.ISelect;
+
 
 
 public class SelectConditionedCol implements ISelect {

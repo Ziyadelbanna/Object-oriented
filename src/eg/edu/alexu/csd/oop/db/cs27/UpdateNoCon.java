@@ -16,6 +16,8 @@ import java.util.regex.Matcher;
 
 import java.util.regex.Pattern;
 
+import eg.edu.alexu.csd.oop.db.Expression;
+
 
 
 public class UpdateNoCon implements Expression {

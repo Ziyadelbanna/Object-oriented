@@ -6,6 +6,8 @@ import java.io.File;
 
 import java.util.ArrayList;
 
+import eg.edu.alexu.csd.oop.db.Expression;
+
 
 
 public class DeleteTableContents implements Expression {

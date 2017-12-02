@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import java.util.Map;
 
+import eg.edu.alexu.csd.oop.db.ISelect;
+
 
 
 public class SelectAllConditioned implements ISelect{

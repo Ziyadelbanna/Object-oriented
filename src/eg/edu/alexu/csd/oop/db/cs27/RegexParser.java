@@ -4,6 +4,9 @@ package eg.edu.alexu.csd.oop.db.cs27;
 
 import java.util.ArrayList;
 
+import eg.edu.alexu.csd.oop.db.Expression;
+import eg.edu.alexu.csd.oop.db.ISelect;
+
 
 
 public class RegexParser {
