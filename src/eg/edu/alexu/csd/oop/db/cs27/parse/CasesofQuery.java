@@ -18,7 +18,7 @@ import eg.edu.alexu.csd.oop.db.cs27.XmlDropTable;
 import eg.edu.alexu.csd.oop.db.cs27.XMLinsert;
 import eg.edu.alexu.csd.oop.db.cs27.XMLSelect;
 
-public class Adapter {
+public class CasesofQuery {
 
 	XmlFactory factory = new XmlFactory();
 

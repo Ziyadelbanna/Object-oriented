@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 
 import javax.management.RuntimeErrorException;
 
-public class ParserFiltrer {
+public class MyParser {
 	private Map<String, Object> out = new HashMap<String, Object>();
-	private ParserFactory factory = new ParserFactory();
-	private Parser parser;
+	private ParsingCases factory = new ParsingCases();
+	private IParser parser;
 
 	// private CreateTable ct = new CreateTable();
 	public Map<String, Object> getInfo(String quary) throws SQLSyntaxErrorException {

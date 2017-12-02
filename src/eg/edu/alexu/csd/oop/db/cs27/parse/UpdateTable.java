@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Delete implements Parser {
+public class UpdateTable implements IParser {
+
 	private Map<String, Object> collected = new HashMap<String, Object>();
 	private String regex = new String();
 	public ArrayList<String> colNames = new ArrayList<String>();
@@ -14,8 +15,8 @@ public class Delete implements Parser {
 	public ArrayList<String> condition = new ArrayList<String>();
 	String TableName = new String();
 
-	public Delete() {
-		collected.put("Operation", "Delete");
+	public UpdateTable() {
+		collected.put("Operation", "Update");
 	}
 
 	public boolean ismatch(String quary) {
@@ -29,11 +30,19 @@ public class Delete implements Parser {
 
 	public void parse(String quary) {
 		// String [] n = quary.split("//s+");
-		Pattern p = Pattern.compile("(?i)(delete)\\s+(?i)(from)\\s*");
+		Pattern p = Pattern.compile("\\s*(?i)update\\s*");
 		String[] n = p.split(quary);
 
-		String temp = n[1];
+		p = Pattern.compile("\\s*(?i)set\\s*");
+		n = p.split(n[1]);
+
+		TableName = n[0];
+
 		int i = 0;
+		String temp = n[1];
+		/*
+		 * for(i = 3; i < n.length; i++){ temp += n[i]; }
+		 */
 
 		p = Pattern.compile("\\s*;\\s*");
 		n = p.split(temp);
@@ -42,9 +51,17 @@ public class Delete implements Parser {
 		p = Pattern.compile("\\s*(?i)(where)\\s*");
 		n = p.split(temp);
 		if (n.length > 1) {
-			TableName = n[0];
+			String val = n[0];
 			String cond = n[1];
 
+			p = Pattern.compile("\\s*,\\s*");
+			n = p.split(val);
+			for (i = 0; i < n.length; i++) {
+				p = Pattern.compile("\\s*=\\s*");
+				String[] m = p.split(n[i]);
+				colNames.add(m[0]);
+				values.add(m[1]);
+			}
 			char ope = 'a';
 			for (i = 0; i < cond.length(); i++) {
 				char c = cond.charAt(i);
@@ -60,13 +77,23 @@ public class Delete implements Parser {
 			condition.add(String.valueOf(ope));
 			condition.add(n[1]);
 		} else {
-			TableName = n[0];
+			String val = n[0];
+			p = Pattern.compile("\\s*,\\s*");
+			n = p.split(val);
+			for (i = 0; i < n.length; i++) {
+				p = Pattern.compile("\\s*=\\s*");
+				String[] m = p.split(n[i]);
+				colNames.add(m[0]);
+				values.add(m[1]);
+			}
 		}
 
 		/*
-		 * System.out.println(TableName); System.out.println("-------------");
-		 * 
-		 * String out = new String(); for(i = 0; i < condition.size(); i++){
+		 * System.out.println(TableName); System.out.println("-------------"); for(i =
+		 * 0; i < colNames.size(); i++){ String out = colNames.get(i); out += "  ++  " +
+		 * values.get(i); System.out.println(out);
+		 * System.out.println("=========================="); } String out = new
+		 * String(); for(i = 0; i < condition.size(); i++){
 		 * 
 		 * out += condition.get(i) + "--"; } System.out.println(out);
 		 * System.out.println("==========================");
@@ -77,7 +104,11 @@ public class Delete implements Parser {
 	public Map<String, Object> getMap(String quary) {
 		parse(quary);
 		collected.put("TableName", TableName);
+		collected.put("ColumnValues", values);
+		collected.put("ColumnNames", colNames);
 		collected.put("Conditions", condition);
+
 		return collected;
 	}
+
 }

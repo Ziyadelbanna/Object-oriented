@@ -12,8 +12,8 @@ import java.util.Map;
 import javax.xml.stream.XMLStreamException;
 
 import eg.edu.alexu.csd.oop.db.Database;
-import eg.edu.alexu.csd.oop.db.cs27.parse.Adapter;
-import eg.edu.alexu.csd.oop.db.cs27.parse.ParserFiltrer;
+import eg.edu.alexu.csd.oop.db.cs27.parse.CasesofQuery;
+import eg.edu.alexu.csd.oop.db.cs27.parse.MyParser;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -34,8 +34,8 @@ import org.xml.sax.InputSource;
 public class MyDatabase implements Database {
 	// MainController control = new MainController();
 	public static Map<String, String> tables = new HashMap<>();
-	static ParserFiltrer parser = new ParserFiltrer();
-	static Adapter ad = new Adapter();
+	static MyParser parser = new MyParser();
+	static CasesofQuery ad = new CasesofQuery();
 	public static StringBuilder cd = new StringBuilder();
 	public String currentDB = null;
 	public Map<String, Object> str = new HashMap<String, Object>();

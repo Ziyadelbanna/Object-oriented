@@ -1,33 +1,33 @@
 package eg.edu.alexu.csd.oop.db.cs27.parse;
 
-public class ParserFactory {
-	public Parser NewInstance(String operation) {
+public class ParsingCases {
+	public IParser NewInstance(String operation) {
 
-		Parser parser = null;
+		IParser parser = null;
 		switch (operation) {
 		case "Select":
-			parser = new Select();
+			parser = new SelectFromTable();
 			break;
 		case "Insert":
-			parser = new Insert();
+			parser = new InserttoTable();
 			break;
 		case "CreateTable":
-			parser = new CreateTable();
+			parser = new TableCreation();
 			break;
 		case "CreateDB":
-			parser = new CreateDB();
+			parser = new DatabaseCreation();
 			break;
 		case "DropDB":
-			parser = new DropDB();
+			parser = new DropDataBase();
 			break;
 		case "DropTable":
 			parser = new DropTable();
 			break;
 		case "Delete":
-			parser = new Delete();
+			parser = new DeleteFromTable();
 			break;
 		case "Update":
-			parser = new update();
+			parser = new UpdateTable();
 			break;
 		}
 		return parser;

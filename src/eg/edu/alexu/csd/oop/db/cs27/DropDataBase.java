@@ -11,7 +11,7 @@ public class DropDataBase {
 		File db = new File(dbPath);
 		File table = null;
 		if (db.exists() && db.isDirectory()) {
-			filesToBeDeleted(db.listFiles());
+			deletefiles(db.listFiles());
 			db.delete();
 		} else {
 			throw null;
@@ -20,7 +20,7 @@ public class DropDataBase {
 
 	}
 
-	private void filesToBeDeleted(File[] filesToBeFiltered) {
+	private void deletefiles(File[] filesToBeFiltered) {
 		for (File f : filesToBeFiltered) {
 			f.delete();
 		}

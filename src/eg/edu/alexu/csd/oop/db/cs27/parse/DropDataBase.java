@@ -3,14 +3,13 @@ package eg.edu.alexu.csd.oop.db.cs27.parse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateDB implements Parser {
+public class DropDataBase implements IParser {
 	private Map<String, Object> collected = new HashMap<String, Object>();
 	private String selectedCommand;
 	private String DBName = "";
 
-	public CreateDB() {
+	public DropDataBase() {
 		collected.put("Operation", getClass().getSimpleName());
-
 	}
 
 	public String getDBName() {
@@ -27,5 +26,4 @@ public class CreateDB implements Parser {
 		collected.put("DataBaseName", getDBName());
 		return collected;
 	}
-
 }

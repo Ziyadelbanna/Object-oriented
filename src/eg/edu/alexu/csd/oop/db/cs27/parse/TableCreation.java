@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CreateTable implements Parser {
+public class TableCreation implements IParser {
 	private Map<String, Object> collected = new HashMap<String, Object>();
 	private String regex = new String();
 	public ArrayList<String> colNames = new ArrayList<String>();
@@ -14,7 +14,7 @@ public class CreateTable implements Parser {
 	public ArrayList<String> size = new ArrayList<String>();
 	String TableName = new String();
 
-	public CreateTable() {
+	public TableCreation() {
 		// TODO Auto-generated constructor stub
 
 		collected.put("Operation", "CreateTable");

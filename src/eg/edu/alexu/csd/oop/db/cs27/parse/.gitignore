@@ -11,3 +11,14 @@
 /CreateTable.class
 /CreateDB.class
 /Adapter.class
+/CasesofQuery.class
+/DatabaseCreation.class
+/TableCreation.class
+/DropDataBase.class
+/ParsingCases.class
+/MyParser.class
+/InserttoTable.class
+/SelectFromTable.class
+/UpdateTable.class
+/DeleteFromTable.class
+/IParser.class
