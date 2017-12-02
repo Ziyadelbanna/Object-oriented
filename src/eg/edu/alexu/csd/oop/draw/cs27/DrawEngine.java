@@ -170,7 +170,6 @@ public class DrawEngine implements DrawingEngine {
 				Element shape = doc.createElement("shape");
 				shape.appendChild(doc.createTextNode(String.valueOf(s)));
 				root.appendChild(shape);
-				
 			}
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
@@ -199,7 +198,6 @@ public class DrawEngine implements DrawingEngine {
 			for (DrawShape c : s.getshapes()) {
 				shapeslists.getLast().add((Shape) c);
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
