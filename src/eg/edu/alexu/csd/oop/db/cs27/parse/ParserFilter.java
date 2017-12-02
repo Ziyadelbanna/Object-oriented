@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import javax.management.RuntimeErrorException;
 
-public class ParserFiltrer {
+public class ParserFilter {
 	private Map<String, Object> out = new HashMap<String, Object>();
 	private ParserFactory factory = new ParserFactory();
 	private Parser parser;

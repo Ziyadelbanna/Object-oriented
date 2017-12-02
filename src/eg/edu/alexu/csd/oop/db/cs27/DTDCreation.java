@@ -11,12 +11,12 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.validation.*;
 
-public class DTD {
+public class DTDCreation {
 	private static StringWriter stringWriter;
 	private static XMLOutputFactory xMLOutputFactory;
 	private static XMLStreamWriter xMLStreamWriter;
 
-	public DTD() {
+	public DTDCreation() {
 		if (stringWriter == null) {
 			stringWriter = new StringWriter();
 			xMLOutputFactory = XMLOutputFactory.newInstance();

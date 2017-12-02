@@ -33,7 +33,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-public class DomDeleter {
+public class DeleteDOM {
 	public int deleteTable(String database, String name, String[] condition) {
 		Set<Element> targetElements = new HashSet<Element>();
 		int temp = 0;

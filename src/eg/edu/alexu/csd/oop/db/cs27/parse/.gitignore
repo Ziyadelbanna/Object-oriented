@@ -22,3 +22,7 @@
 /UpdateTable.class
 /DeleteFromTable.class
 /IParser.class
+/CreateDatabase.class
+/DropDatabase.class
+/ParserFilter.class
+/Update.class

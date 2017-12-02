@@ -32,7 +32,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 
-public class xmlWritrer {
+public class xmlWriter {
 	public void createTable(String database, String name, ArrayList<String> columnsName, ArrayList<String> dataType) {
 		//System.out.println(database);
 		if (database == null || database.length() == 0) {

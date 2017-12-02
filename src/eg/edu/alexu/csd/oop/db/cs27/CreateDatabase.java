@@ -2,7 +2,7 @@ package eg.edu.alexu.csd.oop.db.cs27;
 
 import java.io.File;
 
-public class DBCreator {
+public class CreateDatabase {
 	public String createDataBase(String dbPath) {
 		dbPath = dbPath.toLowerCase();
 		File db = new File(dbPath);

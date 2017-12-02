@@ -15,10 +15,10 @@ public class ParserFactory {
 			parser = new CreateTable();
 			break;
 		case "CreateDB":
-			parser = new CreateDB();
+			parser = new CreateDatabase();
 			break;
 		case "DropDB":
-			parser = new DropDB();
+			parser = new DropDatabase();
 			break;
 		case "DropTable":
 			parser = new DropTable();
@@ -27,7 +27,7 @@ public class ParserFactory {
 			parser = new Delete();
 			break;
 		case "Update":
-			parser = new update();
+			parser = new Update();
 			break;
 		}
 		return parser;

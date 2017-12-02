@@ -111,3 +111,7 @@
 /DBCreator.class
 /DTDCreation.class
 /DomDeleter.class
+/CreateDatabase.class
+/DeleteDOM.class
+/XMLOper.class
+/xmlWriter.class

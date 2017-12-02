@@ -13,7 +13,7 @@ import javax.xml.stream.XMLStreamException;
 
 import eg.edu.alexu.csd.oop.db.Database;
 import eg.edu.alexu.csd.oop.db.cs27.parse.Adapter;
-import eg.edu.alexu.csd.oop.db.cs27.parse.ParserFiltrer;
+import eg.edu.alexu.csd.oop.db.cs27.parse.ParserFilter;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -34,7 +34,7 @@ import org.xml.sax.InputSource;
 public class MyDatabase implements Database {
 	// MainController control = new MainController();
 	public static Map<String, String> tables = new HashMap<>();
-	static ParserFiltrer parser = new ParserFiltrer();
+	static ParserFilter parser = new ParserFilter();
 	static Adapter ad = new Adapter();
 	public static StringBuilder cd = new StringBuilder();
 	public String currentDB = null;

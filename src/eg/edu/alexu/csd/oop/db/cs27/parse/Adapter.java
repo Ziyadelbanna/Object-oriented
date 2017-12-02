@@ -9,10 +9,10 @@ import java.util.Map;
 import javax.xml.stream.XMLStreamException;
 
 import eg.edu.alexu.csd.oop.db.cs27.XmlFactory;
-import eg.edu.alexu.csd.oop.db.cs27.xmlWritrer;
-import eg.edu.alexu.csd.oop.db.cs27.DomDeleter;
+import eg.edu.alexu.csd.oop.db.cs27.xmlWriter;
+import eg.edu.alexu.csd.oop.db.cs27.DeleteDOM;
 import eg.edu.alexu.csd.oop.db.cs27.DomUpdater;
-import eg.edu.alexu.csd.oop.db.cs27.DBCreator;
+import eg.edu.alexu.csd.oop.db.cs27.CreateDatabase;
 import eg.edu.alexu.csd.oop.db.cs27.DropDataBase;
 import eg.edu.alexu.csd.oop.db.cs27.XmlDropTable;
 import eg.edu.alexu.csd.oop.db.cs27.XMLinsert;
@@ -72,7 +72,7 @@ public class Adapter {
 			ArrayList<String> conditionD = (ArrayList<String>) parseInput.get("Conditions");
 			String[] con = null;
 			con = conditionD.toArray(new String[0]);
-			return ((DomDeleter) xmlInstance).deleteTable(dbPathD, tablePathD, con);
+			return ((DeleteDOM) xmlInstance).deleteTable(dbPathD, tablePathD, con);
 
 		case "Update":
 			String dbPathU = (String) parseInput.get("DBName");
@@ -91,7 +91,7 @@ public class Adapter {
 			ArrayList<String> columnsName = (ArrayList<String>) parseInput.get("ColumnNames");
 			ArrayList<String> dataType = (ArrayList<String>) parseInput.get("ColumnType");
 
-			((xmlWritrer) xmlInstance).createTable(dbPathC, name, columnsName, dataType);
+			((xmlWriter) xmlInstance).createTable(dbPathC, name, columnsName, dataType);
 			return null;
 		// return null;
 
@@ -99,7 +99,7 @@ public class Adapter {
 
 			String dbPathC1 = (String) parseInput.get("DataBaseName");
 
-			return ((DBCreator) xmlInstance).createDataBase(dbPathC1);
+			return ((CreateDatabase) xmlInstance).createDataBase(dbPathC1);
 		case "DropTable":
 
 			String dbPathC2 = (String) parseInput.get("DBName");
