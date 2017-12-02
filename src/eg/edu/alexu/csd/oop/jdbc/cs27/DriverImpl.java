@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.oop.jdbc.cs27;
 
-
-
 import java.io.File;
 
 import java.sql.Connection;
@@ -18,23 +16,15 @@ import java.util.Properties;
 
 import java.util.logging.Logger;
 
-
-
-
-
 public class DriverImpl implements Driver {
 
-	
+	public DriverImpl() {
 
-	public DriverImpl(){
+		// OnlineDebuger.logln("=====================================", false);
 
-		//OnlineDebuger.logln("=====================================", false);
-
-	//	OnlineDebuger.logln("new DriverImpl", false);
+		// OnlineDebuger.logln("new DriverImpl", false);
 
 	}
-
-	
 
 	@Override
 
@@ -44,25 +34,21 @@ public class DriverImpl implements Driver {
 
 	}
 
-
-
 	@Override
 
 	public Connection connect(String url, Properties info) throws SQLException {
 
 		File dir = (File) info.get("path");
 
-		if (acceptsURL(url) && dir != null){
+		if (acceptsURL(url) && dir != null) {
 
 			return new ConnectionImp(dir.getAbsolutePath());
 
-		} else 
+		} else
 
 			return null;
 
 	}
-
-	
 
 	@Override
 
@@ -76,8 +62,6 @@ public class DriverImpl implements Driver {
 
 	}
 
-	
-
 	@Override
 
 	public int getMajorVersion() {
@@ -85,8 +69,6 @@ public class DriverImpl implements Driver {
 		throw new UnsupportedOperationException();
 
 	}
-
-
 
 	@Override
 
@@ -96,8 +78,6 @@ public class DriverImpl implements Driver {
 
 	}
 
-
-
 	@Override
 
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
@@ -106,8 +86,6 @@ public class DriverImpl implements Driver {
 
 	}
 
-
-
 	@Override
 
 	public boolean jdbcCompliant() {
@@ -115,7 +93,5 @@ public class DriverImpl implements Driver {
 		throw new UnsupportedOperationException();
 
 	}
-
-
 
 }

@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.oop.database.cs27;
 
-
-
 import java.sql.SQLException;
 
 import java.util.HashMap;
@@ -11,8 +9,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 
 import java.util.regex.Pattern;
-
-
 
 import eg.edu.alexu.csd.oop.database.cs27.FileOperations;
 
@@ -24,17 +20,11 @@ import eg.edu.alexu.csd.oop.database.cs27.TablesPool;
 
 import eg.edu.alexu.csd.oop.database.cs27.XMLParser;
 
-
-
 class TableStructInterpreter extends Interpreter {
-
-
 
 	private static final String DROP_REGEX = "(drop)\\s+table\\s+(" + NAME_REGEX + ")\\s*;?";
 
 	private static final Pattern DROP_PATTERN = Pattern.compile(DROP_REGEX, Pattern.CASE_INSENSITIVE);
-
-
 
 	private static final String COL_REGEX = NAME_REGEX + "\\s+" + SUPPORTED_TYPES_REGEX;
 
@@ -44,11 +34,7 @@ class TableStructInterpreter extends Interpreter {
 
 	private static final Pattern CREATE_PATTERN = Pattern.compile(CREATE_REGEX, Pattern.CASE_INSENSITIVE);
 
-
-
 	private Matcher matcher;
-
-
 
 	private String tableName;
 
@@ -57,8 +43,6 @@ class TableStructInterpreter extends Interpreter {
 	private String[] colNames;
 
 	private Map<String, Class<? extends Comparable<?>>> types;
-
-
 
 	@Override
 
@@ -76,8 +60,6 @@ class TableStructInterpreter extends Interpreter {
 
 	}
 
-
-
 	@Override
 
 	public Object interpret(MyDataBase db) throws SQLException {
@@ -85,8 +67,6 @@ class TableStructInterpreter extends Interpreter {
 		return interpret(db.getTablesPool());
 
 	}
-
-
 
 	@Override
 
@@ -133,8 +113,6 @@ class TableStructInterpreter extends Interpreter {
 		return false;
 
 	}
-
-
 
 	private void extract() {
 
