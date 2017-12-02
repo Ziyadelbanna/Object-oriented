@@ -1,3 +1,5 @@
 /Database.class
 /ISelect.class
 /Expression.class
+/Dbms.class
+/FileHandler.class
