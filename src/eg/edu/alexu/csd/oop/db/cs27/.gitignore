@@ -95,3 +95,17 @@
 /Limit.class
 /Sort.class
 /Union.class
+/xmlWritrer.class
+/XmlOperations.class
+/XmlFactory.class
+/XmlDropTable.class
+/XMLinsert.class
+/XMLSelect.class
+/ProcessParser.class
+/MyDatabase.class
+/Filter.class
+/DropDataBase.class
+/DomUpdater.class
+/Domdeleter.class
+/DTD.class
+/DBCreator.class
