@@ -18,11 +18,10 @@ import java.util.regex.Pattern;
 
 public class StructureQuery {
 
-	/*
 
 	private Validator valid=new Validator();
 
-	public boolean excute(String query,String currentdata){
+	public boolean excute(String query,String currentdata) throws SQLException{
 
 		if (valid.isCreateDatabase(query)) {
 
@@ -140,7 +139,7 @@ public class StructureQuery {
 
 			tablename=m1.group().trim();
 
-			history=new History(arr.size());
+			History history = new History(arr.size());
 
 			File file=new File(currentdata+"\\"+tablename+".xml");
 
@@ -204,6 +203,6 @@ public class StructureQuery {
 
 	}
 
-	*/
+	
 
 }
