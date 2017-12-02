@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SelectFromTable implements IParser {
+public class Select implements Parser {
 	private Map<String, Object> collected = new HashMap<String, Object>();
 	private String selectedCommand;
 	private Boolean Condition = false;
@@ -17,7 +17,7 @@ public class SelectFromTable implements IParser {
 	private ArrayList<Object> whereCond = new ArrayList<>();
 	private String TableName = "";
 
-	public SelectFromTable() {
+	public Select() {
 		collected.put("Operation", getClass().getSimpleName());
 	}
 
@@ -32,7 +32,7 @@ public class SelectFromTable implements IParser {
 			}
 
 		} else {
-			if (in.trim().length() == 0 || in.trim().equals("*")) {
+			if (in.trim().length() == 0||in.trim().equals("*")) {
 				inputs = null;
 			} else {
 				inputs.add(in.trim());

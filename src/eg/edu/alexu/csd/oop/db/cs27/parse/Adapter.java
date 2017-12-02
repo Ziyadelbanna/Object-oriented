@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamException;
 
 import eg.edu.alexu.csd.oop.db.cs27.XmlFactory;
 import eg.edu.alexu.csd.oop.db.cs27.xmlWritrer;
-import eg.edu.alexu.csd.oop.db.cs27.Domdeleter;
+import eg.edu.alexu.csd.oop.db.cs27.DomDeleter;
 import eg.edu.alexu.csd.oop.db.cs27.DomUpdater;
 import eg.edu.alexu.csd.oop.db.cs27.DBCreator;
 import eg.edu.alexu.csd.oop.db.cs27.DropDataBase;
@@ -18,12 +18,11 @@ import eg.edu.alexu.csd.oop.db.cs27.XmlDropTable;
 import eg.edu.alexu.csd.oop.db.cs27.XMLinsert;
 import eg.edu.alexu.csd.oop.db.cs27.XMLSelect;
 
-public class CasesofQuery {
+public class Adapter {
 
 	XmlFactory factory = new XmlFactory();
 
-	public Object getOutput(Map<String, Object> parseInput)
-			throws FileNotFoundException, XMLStreamException, SQLException {
+	public Object getOutput(Map<String, Object> parseInput) throws FileNotFoundException, XMLStreamException, SQLException {
 		String operation = (String) (parseInput.get("Operation"));
 		Object xmlInstance = factory.getXmlInstance(operation);
 		switch (operation) {
@@ -73,7 +72,7 @@ public class CasesofQuery {
 			ArrayList<String> conditionD = (ArrayList<String>) parseInput.get("Conditions");
 			String[] con = null;
 			con = conditionD.toArray(new String[0]);
-			return ((Domdeleter) xmlInstance).deleteTable(dbPathD, tablePathD, con);
+			return ((DomDeleter) xmlInstance).deleteTable(dbPathD, tablePathD, con);
 
 		case "Update":
 			String dbPathU = (String) parseInput.get("DBName");

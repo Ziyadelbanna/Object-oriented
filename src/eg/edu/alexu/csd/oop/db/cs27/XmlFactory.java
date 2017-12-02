@@ -11,7 +11,7 @@ public class XmlFactory {
 		} else if (name.equals("Update")) {
 			return new DomUpdater();
 		} else if (name.equals("Delete")) {
-			return new Domdeleter();
+			return new DomDeleter();
 		} else if (name.equals("CreateTable")) {
 			return new xmlWritrer();
 		} else if (name.equals("CreateDB")) {

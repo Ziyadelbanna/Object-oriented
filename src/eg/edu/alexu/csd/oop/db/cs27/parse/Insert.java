@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class InserttoTable implements IParser {
+public class Insert implements Parser {
 	private String selectedCommand;
 	private LinkedList<String> inputs = new LinkedList<>();
 	private LinkedList<String> values = new LinkedList<>();
 	private String TableName = "";
 	private Map<String, Object> collected = new HashMap<String, Object>();
 
-	public InserttoTable() {
+	public Insert() {
 		collected.put("Operation", getClass().getSimpleName());
 
 	}

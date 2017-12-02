@@ -11,12 +11,12 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.validation.*;
 
-public class DTDCreation {
+public class DTD {
 	private static StringWriter stringWriter;
 	private static XMLOutputFactory xMLOutputFactory;
 	private static XMLStreamWriter xMLStreamWriter;
 
-	public DTDCreation() {
+	public DTD() {
 		if (stringWriter == null) {
 			stringWriter = new StringWriter();
 			xMLOutputFactory = XMLOutputFactory.newInstance();
@@ -76,6 +76,7 @@ public class DTDCreation {
 				path = path.concat(".dtd");
 			// System.out.println(path);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)));
+
 			bw.write(stringWriter.getBuffer().toString());
 			bw.flush();
 			bw.close();

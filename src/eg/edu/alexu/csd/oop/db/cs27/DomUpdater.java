@@ -46,7 +46,7 @@ public class DomUpdater {
 			InputStream inputStream;
 			Reader reader = null;
 			try {
-				inputStream = new FileInputStream(database + File.separator + name + ".xml");
+				inputStream = new FileInputStream(database+File.separator+name + ".xml");
 				try {
 					reader = new InputStreamReader(inputStream, "ISO-8859-1");
 				} catch (UnsupportedEncodingException e) {
@@ -75,7 +75,8 @@ public class DomUpdater {
 				return 0;
 			}
 			/*
-			 * if (!filter.ValueValid(dummy, newValue, columnsName)) { throw null; }
+			 * if (!filter.ValueValid(dummy, newValue, columnsName)) { throw
+			 * null; }
 			 * 
 			 */
 			if (condition.length == 0) {
@@ -168,11 +169,11 @@ public class DomUpdater {
 			transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
 
 			transformer.transform(source, result1);
-
+			
 			MyDatabase.tables.put(name, x.toString());
-
-			result1 = new StreamResult(new File(database + File.separator + name + ".xml"));
-
+			
+			result1= new StreamResult(new File(database+ File.separator+name+".xml"));
+			
 			transformer.transform(source, result1);
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -194,7 +195,7 @@ public class DomUpdater {
 		return result;
 
 	}
-	
+
 	private boolean check(String a, String[] c) {
 		if (c[1].equals("=")) {
 			return a.matches(c[2]);

@@ -6,8 +6,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UpdateTable implements IParser {
-
+public class Delete implements Parser {
 	private Map<String, Object> collected = new HashMap<String, Object>();
 	private String regex = new String();
 	public ArrayList<String> colNames = new ArrayList<String>();
@@ -15,8 +14,8 @@ public class UpdateTable implements IParser {
 	public ArrayList<String> condition = new ArrayList<String>();
 	String TableName = new String();
 
-	public UpdateTable() {
-		collected.put("Operation", "Update");
+	public Delete() {
+		collected.put("Operation", "Delete");
 	}
 
 	public boolean ismatch(String quary) {
@@ -30,19 +29,11 @@ public class UpdateTable implements IParser {
 
 	public void parse(String quary) {
 		// String [] n = quary.split("//s+");
-		Pattern p = Pattern.compile("\\s*(?i)update\\s*");
+		Pattern p = Pattern.compile("(?i)(delete)\\s+(?i)(from)\\s*");
 		String[] n = p.split(quary);
 
-		p = Pattern.compile("\\s*(?i)set\\s*");
-		n = p.split(n[1]);
-
-		TableName = n[0];
-
-		int i = 0;
 		String temp = n[1];
-		/*
-		 * for(i = 3; i < n.length; i++){ temp += n[i]; }
-		 */
+		int i = 0;
 
 		p = Pattern.compile("\\s*;\\s*");
 		n = p.split(temp);
@@ -51,17 +42,9 @@ public class UpdateTable implements IParser {
 		p = Pattern.compile("\\s*(?i)(where)\\s*");
 		n = p.split(temp);
 		if (n.length > 1) {
-			String val = n[0];
+			TableName = n[0];
 			String cond = n[1];
 
-			p = Pattern.compile("\\s*,\\s*");
-			n = p.split(val);
-			for (i = 0; i < n.length; i++) {
-				p = Pattern.compile("\\s*=\\s*");
-				String[] m = p.split(n[i]);
-				colNames.add(m[0]);
-				values.add(m[1]);
-			}
 			char ope = 'a';
 			for (i = 0; i < cond.length(); i++) {
 				char c = cond.charAt(i);
@@ -77,23 +60,13 @@ public class UpdateTable implements IParser {
 			condition.add(String.valueOf(ope));
 			condition.add(n[1]);
 		} else {
-			String val = n[0];
-			p = Pattern.compile("\\s*,\\s*");
-			n = p.split(val);
-			for (i = 0; i < n.length; i++) {
-				p = Pattern.compile("\\s*=\\s*");
-				String[] m = p.split(n[i]);
-				colNames.add(m[0]);
-				values.add(m[1]);
-			}
+			TableName = n[0];
 		}
 
 		/*
-		 * System.out.println(TableName); System.out.println("-------------"); for(i =
-		 * 0; i < colNames.size(); i++){ String out = colNames.get(i); out += "  ++  " +
-		 * values.get(i); System.out.println(out);
-		 * System.out.println("=========================="); } String out = new
-		 * String(); for(i = 0; i < condition.size(); i++){
+		 * System.out.println(TableName); System.out.println("-------------");
+		 * 
+		 * String out = new String(); for(i = 0; i < condition.size(); i++){
 		 * 
 		 * out += condition.get(i) + "--"; } System.out.println(out);
 		 * System.out.println("==========================");
@@ -104,11 +77,7 @@ public class UpdateTable implements IParser {
 	public Map<String, Object> getMap(String quary) {
 		parse(quary);
 		collected.put("TableName", TableName);
-		collected.put("ColumnValues", values);
-		collected.put("ColumnNames", colNames);
 		collected.put("Conditions", condition);
-
 		return collected;
 	}
-
 }
