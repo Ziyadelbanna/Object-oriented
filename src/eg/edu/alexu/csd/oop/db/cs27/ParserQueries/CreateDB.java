@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import eg.edu.alexu.csd.oop.db.cs27.ParserQueriesOptional.WhereOrderLimit;
-import eg.edu.alexu.csd.oop.db.cs27.ParserQueriesOptional.WhereOrderLimitData;
 import eg.edu.alexu.csd.oop.db.cs27.ParserTools.TextTools;
+
+
 
 public class CreateDB implements SingleQuery{
     
@@ -81,13 +82,14 @@ public class CreateDB implements SingleQuery{
 	    return false;
 	}
 	//check if it's valid or not
-	if(((WhereOrderLimitData) error).isError()){
-	    stat = 2;
-	    return false;
-	}else{
-	    stat = 3;
-	    return true;
-	}
+//	if(error.isError()){
+//	    stat = 2;
+//	    return false;
+//	}else{
+//	    stat = 3;
+//	    return true;
+//	}
+	return true;
     }
     
     @Override
