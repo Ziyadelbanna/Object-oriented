@@ -35,7 +35,7 @@ public class MyDriver implements java.sql.Driver{
 			
 			con.db.dir = file.getAbsolutePath();
 			con.db.first = false;				
-		                                                                      //--->	con.db.createDatabase("database" , false);
+		  	con.db.createDatabase("database" , false);
 			//throw new SQLException(url +"\n" + info);
 			return con;
 		/*}else{
