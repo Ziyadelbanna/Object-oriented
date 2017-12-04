@@ -19,13 +19,19 @@ public class Table {
 	
 	public List<String> columnsAvailable = new ArrayList<String>();
 	
-	public void settable(List<Row> rows) {
+	public void settable(List<Row> rows ,List <String>availablecols ) {
 		this.records = rows;
+		this.columnsAvailable = availablecols;
 	} 	
 
 	public List<Row> gettable() {
 		return records;
 	}
+	
+	public List<String> getavailcols() {
+		return columnsAvailable;
+	}
+	
 	
 	
 }
