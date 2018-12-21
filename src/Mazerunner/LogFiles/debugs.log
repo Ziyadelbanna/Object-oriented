@@ -1,0 +1,6 @@
+2018-03-04 22:35:21,812 DEBUG [main] - Gui.Main.main 14 - Debug Message
+2018-03-04 22:35:21,828  INFO [main] - Gui.Main.main 15 - Info Message
+2018-03-04 22:35:21,828  WARN [main] - Gui.Main.main 16 - Warn Message
+2018-03-04 22:35:21,828 ERROR [main] - Gui.Main.main 17 - Error Message
+2018-03-04 22:35:21,828 FATAL [main] - Gui.Main.main 18 - Fatal Message
+2018-03-04 22:35:21,828 DEBUG [main] - Gui.ArrayDraw.main 20 - message

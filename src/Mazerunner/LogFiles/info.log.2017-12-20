@@ -1,0 +1,4 @@
+2017-12-20 23:57:24,351  INFO [main] - Gui.Main.main 16 - Info Message
+2017-12-20 23:57:24,351  WARN [main] - Gui.Main.main 17 - Warn Message
+2017-12-20 23:57:24,351 ERROR [main] - Gui.Main.main 18 - Error Message
+2017-12-20 23:57:24,351 FATAL [main] - Gui.Main.main 19 - Fatal Message
