@@ -1,3 +1,3 @@
 # Object-oriented
 
->_This repository contains projects which were created using oop concepts and design._
+>_This repository contains application which were built using oop concepts and design._
